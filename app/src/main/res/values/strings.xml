@@ -63,12 +63,12 @@
     <string name="accountLabel">我的</string>
     <!--    <string name="searchLabel">Search</string>-->
     <string name="contentDesImageCart">imageCartHome</string>
-    <string name="categoriesLabel">Categories</string>
-    <string name="txtViewAllLabel">View All</string>
+    <string name="categoriesLabel">分类</string>
+    <string name="txtViewAllLabel">全部</string>
     <string name="contentDesImage">top4CateImage</string>
     <string name="category_name">Category name</string>
     <string name="contentDesImageHotSale">hotSaleHome</string>
-    <string name="trendingsLabel">Trendings</string>
+    <string name="trendingsLabel">热销</string>
     <string name="product_name_label">Product Name</string>
     <string name="product_price_label">Product Price</string>
     <string name="contentDesProductImage">Product Image</string>

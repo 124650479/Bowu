@@ -16,6 +16,8 @@ import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 public interface ProductService {
+    @GET("testbyary")
+    Call<ProductListResponse> getProductlist();
 
     @GET("products")
     Call<ProductListResponse> getAllProduct();

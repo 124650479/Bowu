@@ -113,7 +113,8 @@ public class Profiles extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         token = PreferencesHelpers.loadStringData(getContext(), "token");
 
-        checkLoginUser();
+        //检查登陆状态
+        //checkLoginUser();
 
         labelVerified = view.findViewById(R.id.labelVerifiedProfile);
         verifyImage = view.findViewById(R.id.imageVerifiedProfile);
@@ -132,6 +133,8 @@ public class Profiles extends Fragment {
         editProfileAction();
         moveToOtherActivities(view);
         logoutAction(view);
+
+
     }
 
     private void checkLoginUser() {
@@ -173,7 +176,10 @@ public class Profiles extends Fragment {
 
     private void callAPIProfiles() {
         loadingCard.setVisibility(View.VISIBLE);
-        Call<UserResponse> userResponseCall = ApiClient.getUserService().getUserInformation("Bearer " + token);
+
+        loadingCard.setVisibility(View.GONE);
+        //加载个人信息
+/*        Call<UserResponse> userResponseCall = ApiClient.getUserService().getUserInformation("Bearer " + token);
         userResponseCall.enqueue(new Callback<UserResponse>() {
             @Override
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
@@ -188,7 +194,7 @@ public class Profiles extends Fragment {
             @Override
             public void onFailure(Call<UserResponse> call, Throwable t) {
             }
-        });
+        });*/
     }
 
     private void loadUserInfoToScreen() {

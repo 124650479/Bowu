@@ -14,6 +14,17 @@ public class ProductListResponse {
     @SerializedName("data")
     @Expose
     private List<Product> data = null;
+    @SerializedName("code")
+    @Expose
+    private int code;
+
+    public void setCode(int code) {
+        this.code = code;
+    }
+
+    public int getCode() {
+        return code;
+    }
 
     public String getMessage() {
         return message;

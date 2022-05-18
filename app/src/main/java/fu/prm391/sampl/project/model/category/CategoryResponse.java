@@ -15,6 +15,17 @@ public class CategoryResponse {
     @SerializedName("data")
     @Expose
     private List<Category> data = null;
+    @SerializedName("code")
+    @Expose
+    private int code;
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
 
     public CategoryResponse() {
     }

@@ -36,6 +36,7 @@ public class ProductTrendingItemAdapter extends RecyclerView.Adapter<ProductTren
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
+        //注入adapter样式
         View productView = inflater.inflate(R.layout.item_product, parent, false);
         ProductTrendingItemAdapter.ViewHolder viewHolder = new ProductTrendingItemAdapter.ViewHolder(productView);
         return viewHolder;
@@ -49,6 +50,7 @@ public class ProductTrendingItemAdapter extends RecyclerView.Adapter<ProductTren
             holder.productOldPrice.setText(StringHelpers.currencyFormatter(product.getPrice()));
             holder.productPrice.setText(StringHelpers.currencyFormatterWithPercent(product.getPrice(), product.getDiscount()));
             holder.productOldPrice.setPaintFlags(holder.productOldPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+
         } else {
             holder.productOldPrice.setVisibility(View.GONE);
             holder.productPrice.setText(StringHelpers.currencyFormatter(product.getPrice()));
@@ -78,6 +80,7 @@ public class ProductTrendingItemAdapter extends RecyclerView.Adapter<ProductTren
         private TextView productName;
         private TextView productPrice;
         private TextView productOldPrice;
+
         private ImageView productImage;
         private ConstraintLayout constraintLayout;
 

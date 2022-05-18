@@ -12,7 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
 
-    public static final String BASE_URL = "https://api.nmtung.dev/";
+    public static final String BASE_URL = "http://192.168.0.113:8080/";
 
     private static Retrofit getRetrofit() {
         // logging

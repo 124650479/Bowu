@@ -121,6 +121,7 @@ public class Cart extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        //获取登陆令牌
         this.token = PreferencesHelpers.loadStringData(getContext(), "token");
 
         this.recyclerViewMainCart = view.findViewById(R.id.recyclerViewMainCart);
@@ -134,10 +135,16 @@ public class Cart extends Fragment {
 
         this.btnCartCheckout = view.findViewById(R.id.btnCartCheckout);
 
+        //如果登陆令牌为空，请求登陆
         if (token.equals("")) {
-            Intent intent = new Intent(getContext(), Login.class);
-            startActivity(intent);
+/*            Intent intent = new Intent(getContext(), Login.class);
+            startActivity(intent);*/
+
+            //此处做暂时存放
+            loadAllListOrder();
+            setEventBtnCheckout();
         } else {
+            //加载数据
             loadAllListOrder();
             setEventBtnCheckout();
         }
@@ -156,20 +163,18 @@ public class Cart extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), CheckOutAddress.class);
-
                 intent.putExtra("subTotal", subTotal);
                 intent.putExtra("fee", shippingFee);
                 intent.putExtra("tax", tax);
                 intent.putExtra("total", total);
-
                 startActivity(intent);
             }
         });
     }
 
     private void loadAllListOrder() {
-        progressBarCart.setVisibility(View.VISIBLE);
-        call = ApiClient.getOrderService().getAllOrder("Bearer " + this.token);
+        progressBarCart.setVisibility(View.INVISIBLE);
+/*        call = ApiClient.getOrderService().getAllOrder("Bearer " + this.token);
         call.enqueue(new Callback<GetAllOrderResponse>() {
             @Override
             public void onResponse(Call<GetAllOrderResponse> call, Response<GetAllOrderResponse> response) {
@@ -197,7 +202,7 @@ public class Cart extends Fragment {
             public void onFailure(Call<GetAllOrderResponse> call, Throwable t) {
                 Log.e("onResponse", t.toString());
             }
-        });
+        });*/
     }
 
     public void renderCheckout(List<Order> list) {

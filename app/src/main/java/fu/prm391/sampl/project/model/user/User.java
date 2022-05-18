@@ -26,7 +26,7 @@ public class User implements Serializable {
     @Expose
     private String phone;
 
-    @SerializedName("avatar")
+    @SerializedName("avatar")//头像
     @Expose
     private String avatar;
 

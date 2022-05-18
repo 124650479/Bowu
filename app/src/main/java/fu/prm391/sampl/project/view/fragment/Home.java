@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -102,25 +103,28 @@ public class Home extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         //加载动画
         loadingLayout = view.findViewById(R.id.loadingConstraintLayoutHome);
         loadingLayout.setVisibility(View.VISIBLE);
 
+        //加载一组数据
         getTop4Category(view);
+
+        //加载二组数据
         getTrendingProducts(view);
+
         moveToOtherActivities(view);
         moveToOtherNavigationTab(view);
     }
 
     //获取商品列表
     private void getTop4Category(View view) {
-        //recyclerViewTop4Category = view.findViewById(R.id.recyclerViewTop4Cate);
-        loadingLayout.setVisibility(View.GONE);
-/*        Call<CategoryResponse> categoryResponseCall = ApiClient.getCategoryService().getTop4Categories();
+        recyclerViewTop4Category = view.findViewById(R.id.recyclerViewTop4Cate);
+        Call<CategoryResponse> categoryResponseCall = ApiClient.getCategoryService().getTop4Categories();
         categoryResponseCall.enqueue(new Callback<CategoryResponse>() {
             @Override
             public void onResponse(Call<CategoryResponse> call, Response<CategoryResponse> response) {
+                Log.d("提示","网络请求成功！");
                 if (response.isSuccessful()) {
                     ArrayList<Category> categories = (ArrayList<Category>) response.body().getData();
                     recyclerViewTop4Category.setAdapter(new CategoryTop4Adapter(getContext(), categories));
@@ -135,20 +139,21 @@ public class Home extends Fragment {
                     loadingLayout.setVisibility(View.GONE);
                 }
             }
-
             @Override
             public void onFailure(Call<CategoryResponse> call, Throwable t) {
+                Log.d("提示","请求失败！");
             }
-        });*/
+        });
     }
 
     //获取商品列表
     private void getTrendingProducts(View view) {
-        //recyclerViewTopTrendingProduct = view.findViewById(R.id.recyclerViewTopTrendingProductHome);
-/*      Call<ProductListResponse> productResponseCall = ApiClient.getProductService().getTopTrendingProduct();
+        recyclerViewTopTrendingProduct = view.findViewById(R.id.recyclerViewTopTrendingProductHome);
+        Call<ProductListResponse> productResponseCall = ApiClient.getProductService().getProductlist();
         productResponseCall.enqueue(new Callback<ProductListResponse>() {
             @Override
             public void onResponse(Call<ProductListResponse> call, Response<ProductListResponse> response) {
+                Log.d("提示","网络请求成功！");
                 if (response.isSuccessful()) {
                     ArrayList<Product> products = (ArrayList<Product>) response.body().getData();
                     recyclerViewTopTrendingProduct.setAdapter(new ProductTrendingItemAdapter(getContext(), products));
@@ -161,11 +166,11 @@ public class Home extends Fragment {
                     recyclerViewTopTrendingProduct.setLayoutManager(layoutManager);
                 }
             }
-
             @Override
             public void onFailure(Call<ProductListResponse> call, Throwable t) {
+                Log.d("提示","请求失败！");
             }
-        });*/
+        });
     }
 
     private void moveToOtherActivities(View view) {

@@ -6,7 +6,7 @@ import retrofit2.http.GET;
 
 public interface CategoryService {
 
-    @GET("category/get-top-category-product")
+    @GET("testcaterory")
     Call<CategoryResponse> getTop4Categories();
 
     @GET("categories")
