@@ -40,10 +40,10 @@ public class Product implements Serializable {
     @SerializedName("discount")
     @Expose
     private int discount;
-    @SerializedName("category")
+    @SerializedName("categories")
     @Expose
     private List<Category> categories;
-    @SerializedName("isFavorite")
+    @SerializedName("favorite")
     @Expose
     private Boolean isFavorite;
 
@@ -161,5 +161,23 @@ public class Product implements Serializable {
 
     public void setFavorite(Boolean favorite) {
         isFavorite = favorite;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", image='" + image + '\'' +
+                ", price=" + price +
+                ", quantity=" + quantity +
+                ", quantitySold=" + quantitySold +
+                ", createdAt='" + createdAt + '\'' +
+                ", updatedAt='" + updatedAt + '\'' +
+                ", discount=" + discount +
+                ", categories=" + categories +
+                ", isFavorite=" + isFavorite +
+                '}';
     }
 }

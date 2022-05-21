@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -60,6 +61,7 @@ public class Home extends Fragment {
     private TextView txtViewAllCategory, txtViewAllTrendingProduct;
     private ImageView imageCart, imageTopDiscount, imageNewArrival;
     private ConstraintLayout loadingLayout;
+    private NestedScrollView nestedScrollView;
 
     public Home() {
         // Required empty public constructor
@@ -108,7 +110,7 @@ public class Home extends Fragment {
         loadingLayout.setVisibility(View.VISIBLE);
 
         //加载一组数据
-        getTop4Category(view);
+        getTopCategory(view);
 
         //加载二组数据
         getTrendingProducts(view);
@@ -117,14 +119,14 @@ public class Home extends Fragment {
         moveToOtherNavigationTab(view);
     }
 
-    //获取商品列表
-    private void getTop4Category(View view) {
+    //获取分类列表
+    private void getTopCategory(View view) {
         recyclerViewTop4Category = view.findViewById(R.id.recyclerViewTop4Cate);
-        Call<CategoryResponse> categoryResponseCall = ApiClient.getCategoryService().getTop4Categories();
+        Call<CategoryResponse> categoryResponseCall = ApiClient.getCategoryService().
+                getCategorylist(4);
         categoryResponseCall.enqueue(new Callback<CategoryResponse>() {
             @Override
             public void onResponse(Call<CategoryResponse> call, Response<CategoryResponse> response) {
-                Log.d("提示","网络请求成功！");
                 if (response.isSuccessful()) {
                     ArrayList<Category> categories = (ArrayList<Category>) response.body().getData();
                     recyclerViewTop4Category.setAdapter(new CategoryTop4Adapter(getContext(), categories));
@@ -141,7 +143,6 @@ public class Home extends Fragment {
             }
             @Override
             public void onFailure(Call<CategoryResponse> call, Throwable t) {
-                Log.d("提示","请求失败！");
             }
         });
     }
@@ -149,11 +150,11 @@ public class Home extends Fragment {
     //获取商品列表
     private void getTrendingProducts(View view) {
         recyclerViewTopTrendingProduct = view.findViewById(R.id.recyclerViewTopTrendingProductHome);
-        Call<ProductListResponse> productResponseCall = ApiClient.getProductService().getProductlist();
+        Call<ProductListResponse> productResponseCall = ApiClient.getProductService().
+                getProductlist(5);
         productResponseCall.enqueue(new Callback<ProductListResponse>() {
             @Override
             public void onResponse(Call<ProductListResponse> call, Response<ProductListResponse> response) {
-                Log.d("提示","网络请求成功！");
                 if (response.isSuccessful()) {
                     ArrayList<Product> products = (ArrayList<Product>) response.body().getData();
                     recyclerViewTopTrendingProduct.setAdapter(new ProductTrendingItemAdapter(getContext(), products));
@@ -168,7 +169,6 @@ public class Home extends Fragment {
             }
             @Override
             public void onFailure(Call<ProductListResponse> call, Throwable t) {
-                Log.d("提示","请求失败！");
             }
         });
     }
@@ -203,15 +203,6 @@ public class Home extends Fragment {
                 getActivity().finish();
             }
         });
-        // New Arrival
-        imageNewArrival = view.findViewById(R.id.imageNewArrival);
-        imageNewArrival.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getContext(), NewArrivalProduct.class));
-                getActivity().finish();
-            }
-        });
     }
 
     private void moveToOtherNavigationTab(View view) {
@@ -221,8 +212,19 @@ public class Home extends Fragment {
             public void onClick(View view) {
                 BottomNavigationView bottomNavigationView;
                 bottomNavigationView = getActivity().findViewById(R.id.bottomNavigationView);
-//                bottomNavigationView.setOnNavigationItemSelectedListener(myNavigationItemListener);
                 bottomNavigationView.setSelectedItemId(R.id.cart);
+            }
+        });
+
+        nestedScrollView=view.findViewById(R.id.nestedScrollView2);
+        nestedScrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
+            @Override
+            public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {   //scrollY是滑动的距离
+                if(scrollY == (v.getChildAt(0).getMeasuredHeight() - v.getMeasuredHeight())){
+                    loadingLayout.setVisibility(View.VISIBLE);
+                    getTrendingProducts(view);
+                    getTopCategory(view);
+                }
             }
         });
     }

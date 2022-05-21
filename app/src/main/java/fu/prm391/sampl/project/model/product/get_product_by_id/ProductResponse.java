@@ -5,12 +5,16 @@ import com.google.gson.annotations.SerializedName;
 import fu.prm391.sampl.project.model.product.Product;
 
 public class ProductResponse {
+
     @SerializedName("message")
     @Expose
     private String message;
     @SerializedName("data")
     @Expose
     private Product data;
+    @SerializedName("code")
+    @Expose
+    private int code;
 
     public String getMessage() {
         return message;
@@ -26,5 +30,13 @@ public class ProductResponse {
 
     public void setResult(Product result) {
         this.data = result;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
+
+    public int getCode() {
+        return code;
     }
 }

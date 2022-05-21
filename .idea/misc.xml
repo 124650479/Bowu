@@ -3,15 +3,21 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/btn_refresh.xml" value="0.2165" />
+        <entry key="app/src/main/res/drawable/button.xml" value="0.2165" />
         <entry key="app/src/main/res/drawable/line.xml" value="0.199" />
         <entry key="app/src/main/res/drawable/profiles.xml" value="0.199" />
+        <entry key="app/src/main/res/layout/activity_category.xml" value="0.28020833333333334" />
         <entry key="app/src/main/res/layout/activity_intro_app.xml" value="0.3880208333333333" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.3880208333333333" />
+        <entry key="app/src/main/res/layout/activity_specify_product.xml" value="0.31302083333333336" />
+        <entry key="app/src/main/res/layout/activity_top_discount_product.xml" value="0.2640625" />
         <entry key="app/src/main/res/layout/activity_trending_product.xml" value="0.3880208333333333" />
         <entry key="app/src/main/res/layout/color_spinner_layout.xml" value="0.3880208333333333" />
         <entry key="app/src/main/res/layout/fragment_cart.xml" value="0.16666666666666666" />
-        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.3880208333333333" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.296875" />
         <entry key="app/src/main/res/layout/fragment_profiles.xml" value="0.30364583333333334" />
+        <entry key="app/src/main/res/layout/fragment_search.xml" value="0.23125" />
         <entry key="app/src/main/res/layout/item_address_cart.xml" value="0.3880208333333333" />
         <entry key="app/src/main/res/layout/item_address_psa.xml" value="0.3880208333333333" />
         <entry key="app/src/main/res/layout/item_all_category.xml" value="0.3880208333333333" />

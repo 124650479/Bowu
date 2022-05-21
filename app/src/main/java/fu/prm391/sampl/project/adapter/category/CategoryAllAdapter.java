@@ -2,9 +2,11 @@ package fu.prm391.sampl.project.adapter.category;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -43,11 +45,7 @@ public class CategoryAllAdapter extends RecyclerView.Adapter<CategoryAllAdapter.
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Category category = categories.get(position);
         holder.categoryName.setText(category.getName());
-        if (category.getQuantity() == 0) {
-            holder.numberOfItem.setText(category.getQuantity() + " Item");
-        } else {
-            holder.numberOfItem.setText(category.getQuantity() + " Items");
-        }
+        holder.numberOfItem.setText(category.getQuantity() + context.getString(R.string.product_items_cn));
         Picasso.get().load(category.getImage()).fit().into(holder.categoryImage);
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,7 +53,15 @@ public class CategoryAllAdapter extends RecyclerView.Adapter<CategoryAllAdapter.
                 Intent intent = new Intent(context, SpecifyCategory.class);
                 intent.putExtra("specifyCategory", category);
                 context.startActivity(intent);
-//                ((Activity)context).finish();
+            }
+        });
+
+        holder.imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, SpecifyCategory.class);
+                intent.putExtra("specifyCategory", category);
+                context.startActivity(intent);
             }
         });
     }
@@ -72,6 +78,7 @@ public class CategoryAllAdapter extends RecyclerView.Adapter<CategoryAllAdapter.
         private ImageView categoryImage;
         private TextView numberOfItem;
         private CardView cardView;
+        private ImageButton imageButton;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -79,6 +86,7 @@ public class CategoryAllAdapter extends RecyclerView.Adapter<CategoryAllAdapter.
             categoryName = itemView.findViewById(R.id.txtAllCategoryName);
             numberOfItem = itemView.findViewById(R.id.txtNumberOfItemInCategory);
             cardView = itemView.findViewById(R.id.cardAllProduct);
+            imageButton=itemView.findViewById(R.id.imageButton);
         }
     }
 }

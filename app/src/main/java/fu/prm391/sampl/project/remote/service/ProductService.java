@@ -16,14 +16,12 @@ import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 public interface ProductService {
-    @GET("testbyary")
-    Call<ProductListResponse> getProductlist();
+    @GET("get_product_random")
+    Call<ProductListResponse> getProductlist(@Query("num") int num);
 
-    @GET("products")
-    Call<ProductListResponse> getAllProduct();
-
-    @GET("product/get-top-trending")
-    Call<ProductListResponse> getTopTrendingProduct();
+    @GET("get_all_product")
+    Call<ProductListResponse> getAllProduct(@Query("page") int page,
+                                            @Query("limit") int limit);
 
     @GET("product/get-top-discount")
     Call<ProductListResponse> getTopDiscountProduct();
@@ -31,14 +29,14 @@ public interface ProductService {
     @GET("product/get-top-newest")
     Call<ProductListResponse> getNewArrivalsProduct();
 
-    @GET("product/get-by-category")
+    @GET("get_products_by_caterory")
     Call<ProductListResponse> getProductByCategoryId(@Query("categoryId") int categoryId);
 
     @GET("product/search")
     Call<ProductListResponse> searchProducts(@Query("query") String query,
                                              @Query("limit") int limit);
 
-    @GET("product/get")
+    @GET("get_product_by_id")
     Call<ProductResponse> getProductById(@Query("id") int id);
 
     @GET("favorites")
@@ -52,11 +50,13 @@ public interface ProductService {
     Call<DeleteFavoriteResponse> deleteFavoriteProduct(@Header("Authorization") String token,
                                                        @Body DeleteFavoriteRequest deleteFavoriteRequest);
 
-    @GET("product/get-by-category-similar")
-    Call<ProductListResponse> getSimilarProductByCategoryId(@Query("categoryId") int categoryId,
-                                                            @Query("productId") int productId);
+    @GET("get_products_by_caterory")
+    Call<ProductListResponse> getSimilarProductByCategoryId(@Query("categoryId") int categoryId);
 
     @GET("product/get-by-token")
     Call<ProductResponse> getProductByIdWithToken(@Header("Authorization") String token,
                                                   @Query("id") int id);
+
+    @GET("get_products_count")
+    Call<Integer> get_products_count();
 }

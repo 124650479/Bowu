@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -61,6 +62,7 @@ public class SpecifyProduct extends AppCompatActivity {
     private final int lowerLimitNumberProduct = 1;
     private String token;
     private ImageView imageViewUnFavorite;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +78,7 @@ public class SpecifyProduct extends AppCompatActivity {
         loadingConstraintLayout = findViewById(R.id.loadingConstraintLayoutSpecifyProduct);
         recyclerViewSimilarProduct = findViewById(R.id.recyclerViewSimilarProducts);
         cardNumberSelectedProduct = findViewById(R.id.cardNumberSelectedProduct);
+        progressBar=findViewById(R.id.progressBarSpecifyProduct);
 
         loadingConstraintLayout.setVisibility(View.VISIBLE);
         cardNumberSelectedProduct.setVisibility(View.INVISIBLE);
@@ -148,6 +151,7 @@ public class SpecifyProduct extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ProductResponse> call, Throwable t) {
+                Log.d("TAG","error");
             }
         });
     }
@@ -156,7 +160,7 @@ public class SpecifyProduct extends AppCompatActivity {
         if (product.getCategories().size() != 0) {
             Call<ProductListResponse> productListResponseCall = ApiClient
                     .getProductService()
-                    .getSimilarProductByCategoryId(product.getCategories().get(0).getId(), product.getId());
+                    .getSimilarProductByCategoryId(product.getCategories().get(0).getId());
             productListResponseCall.enqueue(new Callback<ProductListResponse>() {
                 @Override
                 public void onResponse(Call<ProductListResponse> call, Response<ProductListResponse> response) {

@@ -66,7 +66,7 @@
     <string name="categoriesLabel">分类</string>
     <string name="txtViewAllLabel">全部</string>
     <string name="contentDesImage">top4CateImage</string>
-    <string name="category_name">Category name</string>
+    <string name="category_name">分类名称</string>
     <string name="contentDesImageHotSale">hotSaleHome</string>
     <string name="trendingsLabel">热销</string>
     <string name="product_name_label">Product Name</string>
@@ -78,11 +78,12 @@
     <string name="contentDesImageButtonBack">Back button</string>
     <string name="categoryLabel">Category</string>
     <string name="contentDesImageButtonNext">Next</string>
-    <string name="superSaleLabel">Super Sale</string>
-    <string name="number_of_item_category">Number of item</string>
-    <string name="newArrivalsLabel">New Arrivals</string>
-    <string name="topTrendingLabel">Top Trendings</string>
+    <string name="superSaleLabel">折扣</string>
+    <string name="number_of_item_category">件商品</string>
+    <string name="newArrivalsLabel">新到商品</string>
+    <string name="topTrendingLabel">热卖中</string>
     <string name="contentDesIconEdit">Icon Edit</string>
+    <string name="product_items_cn">件</string>
 
     <!--  Profile Shipping Address  -->
     <string name="PSA__title">Shipping Address</string>
@@ -129,16 +130,16 @@
     <string name="old_price">Old Price</string>
     <string name="sale_off">Sale Off</string>
     <string name="strikethrough">-</string>
-    <string name="descriptionLabel">Description</string>
+    <string name="descriptionLabel">简介</string>
     <string name="product_description_contents">Product description contents</string>
     <string name="txtColon">:</string>
     <string name="category_content">Category content</string>
-    <string name="quantityLabel">Quantity</string>
+    <string name="quantityLabel">库存</string>
     <string name="number_of_quantity">number of quantity</string>
-    <string name="quantity_sold_label">Quantity Sold</string>
+    <string name="quantity_sold_label">已经售出</string>
     <string name="number_quantity_sold">number quantity sold</string>
-    <string name="add_to_cart_button_label">Add to Cart</string>
-    <string name="similar_products">Similar Products</string>
+    <string name="add_to_cart_button_label">加入购物车</string>
+    <string name="similar_products">相似产品</string>
     <string name="oneLabel">1</string>
     <string name="editProfilesLabel">Edit Profile</string>
     <string name="UserInformationLabel">User Information</string>
@@ -190,5 +191,10 @@
     <string name="re_password_Star">Re-Password*</string>
     <string name="new_password_star">New Password*</string>
     <string name="re_new_password_star">Old Password*</string>
+
+    <!--单次获取商品条数-->
+    <string name="ones_num_product">5</string>
+    <!--单次获取目录条数-->
+    <string name="ones_num_category">4</string>
 
 </resources>

@@ -183,31 +183,29 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/mainBackGroundColor">
+                android:layout_height="match_parent">
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardNewArrivalHome"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
+                    android:layout_height="50dp"
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
                     android:layout_marginBottom="10dp"
-                    android:background="@color/mainBackGroundColor"
-                    app:cardCornerRadius="10dp"
+                    app:cardCornerRadius="50dp"
                     app:cardElevation="5dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
-                    <ImageView
-                        android:id="@+id/imageNewArrival"
+                    <Button
+                        android:id="@+id/more_other"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:contentDescription="@string/contentDesImage"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/new_arrivals" />
+                        android:background="@drawable/btn_refresh"
+                        android:paddingRight="200dp"
+                        android:drawableLeft="@drawable/more_other"/>
                 </androidx.cardview.widget.CardView>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
