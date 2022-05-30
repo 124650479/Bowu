@@ -100,10 +100,11 @@ public class SpecifyProduct extends AppCompatActivity {
         Intent intent = getIntent();
         productId = intent.getIntExtra("productId", 0);
         Call<ProductResponse> productResponseCall;
+        Log.d("TAG",token);
         if (token == null || token.equals("")) {
             productResponseCall = ApiClient.getProductService().getProductById(productId);
         } else {
-            productResponseCall = ApiClient.getProductService().getProductByIdWithToken("Bearer " + token, productId);
+            productResponseCall = ApiClient.getProductService().getProductByIdWithToken(token, productId);
         }
         productResponseCall.enqueue(new Callback<ProductResponse>() {
             @Override
@@ -131,7 +132,6 @@ public class SpecifyProduct extends AppCompatActivity {
                     quantitySold.setText(String.valueOf(product.getQuantitySold()));
                     productCategory.setText(productCategories);
                     Picasso.get().load(product.getImage()).fit().into(productImage);
-
                     getSimilarProducts();
                     if (product.getFavorite() == null) {
                         imageViewFavorite.setVisibility(View.GONE);
@@ -143,7 +143,6 @@ public class SpecifyProduct extends AppCompatActivity {
                     }
                     addFavoriteProduct();
                     deleteFavoriteProduct();
-
                     loadingConstraintLayout.setVisibility(View.GONE);
                     cardNumberSelectedProduct.setVisibility(View.VISIBLE);
                 }
@@ -151,7 +150,6 @@ public class SpecifyProduct extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ProductResponse> call, Throwable t) {
-                Log.d("TAG","error");
             }
         });
     }
@@ -169,9 +167,11 @@ public class SpecifyProduct extends AppCompatActivity {
                         recyclerViewSimilarProduct.setAdapter(new ProductSimilarItemAdapter(SpecifyProduct.this, products));
                         LinearLayoutManager layoutManager = new LinearLayoutManager(SpecifyProduct.this, LinearLayoutManager.HORIZONTAL, false);
                         recyclerViewSimilarProduct.setLayoutManager(layoutManager);
-
                         loadingConstraintLayout.setVisibility(View.GONE);
                         cardNumberSelectedProduct.setVisibility(View.VISIBLE);
+                    }
+                    else{
+
                     }
                 }
 

@@ -191,21 +191,24 @@
                     android:layout_height="50dp"
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
-                    android:layout_marginBottom="10dp"
-                    app:cardCornerRadius="50dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"
+                    app:cardCornerRadius="10dp"
                     app:cardElevation="5dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
-                    <Button
+                    <!--使用未被全局样式定义的按钮标签-->
+                    <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/more_other"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@drawable/btn_refresh"
-                        android:paddingRight="200dp"
-                        android:drawableLeft="@drawable/more_other"/>
+                        android:gravity="center"
+                        android:text="换一批"
+                        android:textColor="@color/white" />
                 </androidx.cardview.widget.CardView>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>

@@ -39,4 +39,13 @@ public class ProductResponse {
     public int getCode() {
         return code;
     }
+
+    @Override
+    public String toString() {
+        return "ProductResponse{" +
+                "message='" + message + '\'' +
+                ", data=" + data +
+                ", code=" + code +
+                '}';
+    }
 }

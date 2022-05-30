@@ -37,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
             //show start activity
             startActivity(new Intent(MainActivity.this, Intro1.class));
         }
-        //这一句用意是什么？
         PreferencesHelpers.editBooleanData(MainActivity.this, "isFirstRun", false);
 //        way 2:
 //        Boolean isFirstRun = getSharedPreferences("PREFERENCE", MODE_PRIVATE)

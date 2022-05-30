@@ -36,9 +36,9 @@
     <string name="createAccountLabel">创建账户</string>
     <string name="haveAnAccountLabel">已有账户?</string>
     <string name="enterYourDetailsInformationLabel">Enter your Details Informations</string>
-    <string name="letsSignYouInLoginLabel">Let’s Sign You In</string>
-    <string name="toContinueFirstVerifyThatItYouLoginLabel">To Continue, first Verify that it’s You.</string>
-    <string name="dontHaveAnAccountLabel">Don’t have an Account?</string>
+    <string name="letsSignYouInLoginLabel">登录</string>
+    <string name="toContinueFirstVerifyThatItYouLoginLabel">继续使用请登陆您的账户</string>
+    <string name="dontHaveAnAccountLabel">还没有账户？</string>
     <string name="setYourPasswordLabel">Set your Password?</string>
     <string name="rememberedYourPasswordLabel">Remembered Your Password?</string>
     <string name="pleaseEnterEmailAddressLabel">Please Enter your Email Address. Your will Receive a Code to Create a new Password via email.</string>

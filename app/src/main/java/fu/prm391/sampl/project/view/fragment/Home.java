@@ -6,7 +6,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,8 +14,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -24,6 +25,7 @@ import java.util.ArrayList;
 
 import fu.prm391.sampl.project.R;
 import fu.prm391.sampl.project.adapter.product.ProductTrendingItemAdapter;
+import fu.prm391.sampl.project.helper.PreferencesHelpers;
 import fu.prm391.sampl.project.model.category.Category;
 import fu.prm391.sampl.project.adapter.category.CategoryTop4Adapter;
 import fu.prm391.sampl.project.model.category.CategoryResponse;
@@ -31,10 +33,10 @@ import fu.prm391.sampl.project.model.product.Product;
 import fu.prm391.sampl.project.model.product.get_list_product.ProductListResponse;
 
 //此类为后台服务器类
+import fu.prm391.sampl.project.model.user.login.LoginResponse;
 import fu.prm391.sampl.project.remote.ApiClient;
 
 import fu.prm391.sampl.project.view.category.AllCategory;
-import fu.prm391.sampl.project.view.product.NewArrivalProduct;
 import fu.prm391.sampl.project.view.product.TopDiscountProduct;
 import fu.prm391.sampl.project.view.product.TrendingProduct;
 import retrofit2.Call;
@@ -61,7 +63,7 @@ public class Home extends Fragment {
     private TextView txtViewAllCategory, txtViewAllTrendingProduct;
     private ImageView imageCart, imageTopDiscount, imageNewArrival;
     private ConstraintLayout loadingLayout;
-    private NestedScrollView nestedScrollView;
+    private Button button;
 
     public Home() {
         // Required empty public constructor
@@ -109,19 +111,20 @@ public class Home extends Fragment {
         loadingLayout = view.findViewById(R.id.loadingConstraintLayoutHome);
         loadingLayout.setVisibility(View.VISIBLE);
 
+        recyclerViewTop4Category = view.findViewById(R.id.recyclerViewTop4Cate);
+        recyclerViewTopTrendingProduct = view.findViewById(R.id.recyclerViewTopTrendingProductHome);
         //加载一组数据
-        getTopCategory(view);
-
+        getTopCategory();
         //加载二组数据
-        getTrendingProducts(view);
+        getTrendingProducts();
+        checktoken();
 
         moveToOtherActivities(view);
         moveToOtherNavigationTab(view);
     }
 
     //获取分类列表
-    private void getTopCategory(View view) {
-        recyclerViewTop4Category = view.findViewById(R.id.recyclerViewTop4Cate);
+    private void getTopCategory() {
         Call<CategoryResponse> categoryResponseCall = ApiClient.getCategoryService().
                 getCategorylist(4);
         categoryResponseCall.enqueue(new Callback<CategoryResponse>() {
@@ -138,7 +141,6 @@ public class Home extends Fragment {
                         }
                     };
                     recyclerViewTop4Category.setLayoutManager(layoutManager);
-                    loadingLayout.setVisibility(View.GONE);
                 }
             }
             @Override
@@ -148,8 +150,7 @@ public class Home extends Fragment {
     }
 
     //获取商品列表
-    private void getTrendingProducts(View view) {
-        recyclerViewTopTrendingProduct = view.findViewById(R.id.recyclerViewTopTrendingProductHome);
+    private void getTrendingProducts() {
         Call<ProductListResponse> productResponseCall = ApiClient.getProductService().
                 getProductlist(5);
         productResponseCall.enqueue(new Callback<ProductListResponse>() {
@@ -165,12 +166,41 @@ public class Home extends Fragment {
                         }
                     };
                     recyclerViewTopTrendingProduct.setLayoutManager(layoutManager);
+                    loadingLayout.setVisibility(View.GONE);
                 }
             }
             @Override
             public void onFailure(Call<ProductListResponse> call, Throwable t) {
             }
         });
+    }
+
+    private void checktoken(){
+        String token = PreferencesHelpers.loadStringData(getContext(), "token");
+        //验证本地令牌是否有效
+        if (token.equals("")) {
+            Toast.makeText(getContext(), "您尚未登录，只能使用部分功能", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            Call<LoginResponse> loginResponseCall = ApiClient.getUserService().check_token(token,token);
+            loginResponseCall.enqueue(new Callback<LoginResponse>() {
+                @Override
+                public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                    if (response.isSuccessful()){
+                        Log.d("提示","令牌有效");
+                    }
+                    else{
+                        Log.d("提示","令牌失效");
+                        PreferencesHelpers.removeSinglePreference(getContext(),"token");
+                        Toast.makeText(getContext(), "登陆状态已经过期，只能使用部分功能", Toast.LENGTH_LONG).show();
+                    }
+                }
+                @Override
+                public void onFailure(Call<LoginResponse> call, Throwable t) {
+                }
+            });
+            //校验令牌有效
+        }
     }
 
     private void moveToOtherActivities(View view) {
@@ -216,15 +246,12 @@ public class Home extends Fragment {
             }
         });
 
-        nestedScrollView=view.findViewById(R.id.nestedScrollView2);
-        nestedScrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
+        button=view.findViewById(R.id.more_other);
+        button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {   //scrollY是滑动的距离
-                if(scrollY == (v.getChildAt(0).getMeasuredHeight() - v.getMeasuredHeight())){
-                    loadingLayout.setVisibility(View.VISIBLE);
-                    getTrendingProducts(view);
-                    getTopCategory(view);
-                }
+            public void onClick(View view) {
+                loadingLayout.setVisibility(View.VISIBLE);
+                getTrendingProducts();
             }
         });
     }

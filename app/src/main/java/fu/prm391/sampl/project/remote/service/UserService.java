@@ -23,11 +23,16 @@ import retrofit2.http.Header;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Query;
 
 public interface UserService {
 
-    @POST("user/login")
+    @POST("/login")
     Call<LoginResponse> loginUser(@Body LoginRequest loginRequest);
+
+    @GET("/check_token")
+    Call<LoginResponse> check_token(@Header("token") String token,
+                                    @Query("jwt")String jwt);
 
     @POST("user/sign-up")
     Call<RegisterResponse> registerUser(@Body RegisterRequest registerRequest);
@@ -39,10 +44,10 @@ public interface UserService {
     Call<ResetPassResponse> resetPass(@Body ResetPassRequest resetPassRequest);
 
     @GET("user/get-user-info")
-    Call<UserResponse> getUserInformation(@Header("Authorization") String token);
+    Call<UserResponse> getUserInformation(@Header("token") String token);
 
     @PUT("user/update-information")
-    Call<UpdateUserInfoResponse> updateUserInformation(@Header("Authorization") String token,
+    Call<UpdateUserInfoResponse> updateUserInformation(@Header("token") String token,
                                                        @Body UpdateUserInfoRequest updateUserInfoRequest);
 
     @POST("user/send-email-active-account")

@@ -135,14 +135,10 @@ public class Cart extends Fragment {
 
         this.btnCartCheckout = view.findViewById(R.id.btnCartCheckout);
 
-        //如果登陆令牌为空，请求登陆
+        //验证本地令牌是否有效
         if (token.equals("")) {
-/*            Intent intent = new Intent(getContext(), Login.class);
-            startActivity(intent);*/
-
-            //此处做暂时存放
-            loadAllListOrder();
-            setEventBtnCheckout();
+            Intent intent = new Intent(getContext(), Login.class);
+            startActivity(intent);
         } else {
             //加载数据
             loadAllListOrder();

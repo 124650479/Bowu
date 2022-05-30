@@ -16,10 +16,10 @@ import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 public interface ProductService {
-    @GET("get_product_random")
+    @GET("/allow/get_product_random")
     Call<ProductListResponse> getProductlist(@Query("num") int num);
 
-    @GET("get_all_product")
+    @GET("/allow/get_all_product")
     Call<ProductListResponse> getAllProduct(@Query("page") int page,
                                             @Query("limit") int limit);
 
@@ -29,14 +29,14 @@ public interface ProductService {
     @GET("product/get-top-newest")
     Call<ProductListResponse> getNewArrivalsProduct();
 
-    @GET("get_products_by_caterory")
+    @GET("/allow/get_products_by_caterory")
     Call<ProductListResponse> getProductByCategoryId(@Query("categoryId") int categoryId);
 
     @GET("product/search")
     Call<ProductListResponse> searchProducts(@Query("query") String query,
                                              @Query("limit") int limit);
 
-    @GET("get_product_by_id")
+    @GET("/allow/get_product_by_id")
     Call<ProductResponse> getProductById(@Query("id") int id);
 
     @GET("favorites")
@@ -50,13 +50,13 @@ public interface ProductService {
     Call<DeleteFavoriteResponse> deleteFavoriteProduct(@Header("Authorization") String token,
                                                        @Body DeleteFavoriteRequest deleteFavoriteRequest);
 
-    @GET("get_products_by_caterory")
+    @GET("/allow/get_products_by_caterory")
     Call<ProductListResponse> getSimilarProductByCategoryId(@Query("categoryId") int categoryId);
 
-    @GET("product/get-by-token")
-    Call<ProductResponse> getProductByIdWithToken(@Header("Authorization") String token,
+    @GET("/product/get_product_by_id")
+    Call<ProductResponse> getProductByIdWithToken(@Header("token") String token,
                                                   @Query("id") int id);
 
-    @GET("get_products_count")
+    @GET("/allow/get_products_count")
     Call<Integer> get_products_count();
 }

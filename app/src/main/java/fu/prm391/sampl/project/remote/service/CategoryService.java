@@ -7,9 +7,9 @@ import retrofit2.http.Query;
 
 public interface CategoryService {
 
-    @GET("get_category_random")
+    @GET("/allow/get_category_random")
     Call<CategoryResponse> getCategorylist(@Query("num") int num);
 
-    @GET("get_all_category")
+    @GET("/allow/get_all_category")
     Call<CategoryResponse> getAllCategories();
 }

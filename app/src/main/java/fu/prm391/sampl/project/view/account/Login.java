@@ -56,7 +56,7 @@ public class Login extends AppCompatActivity {
                 btnLogin.setEnabled(false);
                 // Login Action
                 if (TextUtils.isEmpty(email.getText().toString()) || TextUtils.isEmpty(password.getText().toString())) {
-                    Toast.makeText(Login.this, "Email & Password are required!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Login.this, "邮箱以及密码是必须填写的", Toast.LENGTH_SHORT).show();
                     btnLogin.setEnabled(true);
                 } else {
                     // proceed to login
@@ -80,7 +80,7 @@ public class Login extends AppCompatActivity {
                     LoginResponse loginResponse = response.body();
                     Toast.makeText(Login.this, loginResponse.getMessage(), Toast.LENGTH_SHORT).show();
                     //save token to preference
-                    PreferencesHelpers.saveStringData(Login.this, "token", loginResponse.getToken());
+                    PreferencesHelpers.saveStringData(Login.this, "token", loginResponse.getData());
                     Intent intent = new Intent(Login.this, MainActivity.class);
                     startActivity(intent);
                     finish();

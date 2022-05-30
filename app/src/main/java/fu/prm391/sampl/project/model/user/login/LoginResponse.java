@@ -9,9 +9,13 @@ public class LoginResponse {
     @Expose
     private String message;
 
-    @SerializedName("token")
+    @SerializedName("data")
     @Expose
-    private String token;
+    private String data;
+
+    @SerializedName("code")
+    @Expose
+    private int code;
 
     public String getMessage() {
         return message;
@@ -21,11 +25,19 @@ public class LoginResponse {
         this.message = message;
     }
 
-    public String getToken() {
-        return token;
+    public String getData() {
+        return data;
     }
 
-    public void setToken(String token) {
-        this.token = token;
+    public void setData(String data) {
+        this.data = data;
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
     }
 }
