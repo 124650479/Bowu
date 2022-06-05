@@ -134,33 +134,33 @@ public class CreateNewAddress extends AppCompatActivity {
                 String phone = editTextPhone.getText().toString().trim();
                 String detail = editTextDetail.getText().toString().trim();
 
-                if (name.equals("") || name.length() < 2 || name.length() > 100) {
-                    Toast.makeText(CreateNewAddress.this, "Name must be from 2 to 100 character", Toast.LENGTH_SHORT).show();
+                if (name.equals("")) {
+                    Toast.makeText(CreateNewAddress.this, "请输入名字", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                if (phone.equals("") || phone.length() != 10) {
-                    Toast.makeText(CreateNewAddress.this, "Phone number invalid", Toast.LENGTH_SHORT).show();
+                if (phone.equals("") || phone.length() != 11) {
+                    Toast.makeText(CreateNewAddress.this, "请输入规范的电话号码", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (provinceId == 0) {
-                    Toast.makeText(CreateNewAddress.this, "Please select province", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CreateNewAddress.this, "请选择省份", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (districtId == 0) {
-                    Toast.makeText(CreateNewAddress.this, "Please select district", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CreateNewAddress.this, "请选择城市", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (wardId == 0) {
-                    Toast.makeText(CreateNewAddress.this, "Please select ward", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CreateNewAddress.this, "请选择区域", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (detail.equals("") || detail.length() < 2 || detail.length() > 100) {
-                    Toast.makeText(CreateNewAddress.this, "Detail must be from 2 to 100 character", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CreateNewAddress.this, "请填写详细地址", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -178,12 +178,12 @@ public class CreateNewAddress extends AppCompatActivity {
                     updateAddressRequest.setWardId(wardId);
                     updateAddressRequest.setDetail(detail);
 
-                    Call<UpdateAddressResponse> call = ApiClient.getAddressService().updateAddress("Bearer " + token, updateAddressRequest);
+                    Call<UpdateAddressResponse> call = ApiClient.getAddressService().updateAddress(token, updateAddressRequest);
                     call.enqueue(new Callback<UpdateAddressResponse>() {
                         @Override
                         public void onResponse(Call<UpdateAddressResponse> call, Response<UpdateAddressResponse> response) {
                             if (response.isSuccessful()) {
-                                Toast.makeText(CreateNewAddress.this, "Update successfully", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(CreateNewAddress.this, "更新成功", Toast.LENGTH_SHORT).show();
                                 finish();
                             }
                         }
@@ -203,15 +203,17 @@ public class CreateNewAddress extends AppCompatActivity {
                     createNewAddressRequest.setDistrictId(districtId);
                     createNewAddressRequest.setWardId(wardId);
 
-                    Call<CreateNewAddressResponse> call = ApiClient.getAddressService().createNewAddress("Bearer " + token, createNewAddressRequest);
+                    Call<CreateNewAddressResponse> call = ApiClient.getAddressService().createNewAddress(
+                            token,
+                            createNewAddressRequest);
                     call.enqueue(new Callback<CreateNewAddressResponse>() {
                         @Override
                         public void onResponse(Call<CreateNewAddressResponse> call, Response<CreateNewAddressResponse> response) {
                             if (response.isSuccessful()) {
-                                Toast.makeText(CreateNewAddress.this, "Create new address successfully", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(CreateNewAddress.this, "添加地址成功", Toast.LENGTH_SHORT).show();
                                 finish();
                             } else {
-                                Toast.makeText(CreateNewAddress.this, "Create new address failed", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(CreateNewAddress.this, "错误", Toast.LENGTH_SHORT).show();
                             }
                         }
 
@@ -289,15 +291,11 @@ public class CreateNewAddress extends AppCompatActivity {
             @Override
             public void onResponse(Call<GetProvinceResponse> call, Response<GetProvinceResponse> response) {
                 if (response.isSuccessful()) {
-
                     List<Province> list = response.body().getList();
-                    list.add(0, new Province(0, "-- Select Province --", ""));
-
+                    list.add(0, new Province(0, "-- 选择省份 --", ""));
                     provinceList = list;
-
                     ProvinceAdapter provinceAdapter = new ProvinceAdapter(CreateNewAddress.this, R.layout.item_spinner_new_address, list);
                     spinnerCnaProvince.setAdapter(provinceAdapter);
-
                     spinnerCnaProvince.setSelection(0);
                 }
             }
@@ -316,7 +314,7 @@ public class CreateNewAddress extends AppCompatActivity {
             public void onResponse(Call<GetDistrictResponse> call, Response<GetDistrictResponse> response) {
                 if (response.isSuccessful()) {
                     List<District> list = response.body().getList();
-                    list.add(0, new District(0, "-- Select District --", ""));
+                    list.add(0, new District(0, "-- 选择城市 --", ""));
 
                     districtList = list;
 
@@ -335,19 +333,16 @@ public class CreateNewAddress extends AppCompatActivity {
     }
 
     private void loadSpinnerWard(int id) {
-        Call<GetWardResponse> call = ApiClient.getAddressService().getWardAddress(id);
+        Call<GetWardResponse> call = ApiClient.getAddressService().getWardAddress(provinceId,id);
         call.enqueue(new Callback<GetWardResponse>() {
             @Override
             public void onResponse(Call<GetWardResponse> call, Response<GetWardResponse> response) {
                 if (response.isSuccessful()) {
                     List<Ward> list = response.body().getList();
-                    list.add(0, new Ward(0, "-- Select Ward --", ""));
-
+                    list.add(0, new Ward(0, "-- 选择地区 --", ""));
                     wardList = list;
-
                     WardAdapter wardAdapter = new WardAdapter(CreateNewAddress.this, R.layout.item_spinner_new_address, list);
                     spinnerCnaWard.setAdapter(wardAdapter);
-
                     spinnerCnaWard.setSelection(0);
                 }
             }
@@ -361,7 +356,7 @@ public class CreateNewAddress extends AppCompatActivity {
 
     private void setDefaultProvince() {
         List<Province> list = new ArrayList<>();
-        list.add(new Province(0, "-- Select Province --", ""));
+        list.add(new Province(0, "-- 选择省份 --", ""));
 
         spinnerCnaProvince.setAdapter(new ProvinceAdapter(CreateNewAddress.this, R.layout.item_spinner_new_address, list));
         spinnerCnaProvince.setSelection(0);
@@ -369,7 +364,7 @@ public class CreateNewAddress extends AppCompatActivity {
 
     private void setDefaultDistrict() {
         List<District> list = new ArrayList<>();
-        list.add(new District(0, "-- Select District --", ""));
+        list.add(new District(0, "-- 选择城市 --", ""));
 
         spinnerCnaDistrict.setAdapter(new DistrictAdapter(CreateNewAddress.this, R.layout.item_spinner_new_address, list));
         spinnerCnaDistrict.setSelection(0);
@@ -377,7 +372,7 @@ public class CreateNewAddress extends AppCompatActivity {
 
     private void setDefaultWard() {
         List<Ward> list = new ArrayList<>();
-        list.add(new Ward(0, "-- Select Ward --", ""));
+        list.add(new Ward(0, "-- 选择区域 --", ""));
 
         spinnerCnaWard.setAdapter(new WardAdapter(CreateNewAddress.this, R.layout.item_spinner_new_address, list));
         spinnerCnaWard.setSelection(0);

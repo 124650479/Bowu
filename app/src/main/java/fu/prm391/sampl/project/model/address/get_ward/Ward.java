@@ -10,17 +10,12 @@ public class Ward {
     @SerializedName("name")
     @Expose
     private String name;
-    @SerializedName("prefix")
-    @Expose
-    private String prefix;
-
     public Ward() {
     }
 
     public Ward(int id, String name, String prefix) {
         this.id = id;
         this.name = name;
-        this.prefix = prefix;
     }
 
     public int getId() {
@@ -37,13 +32,5 @@ public class Ward {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getPrefix() {
-        return prefix;
-    }
-
-    public void setPrefix(String prefix) {
-        this.prefix = prefix;
     }
 }

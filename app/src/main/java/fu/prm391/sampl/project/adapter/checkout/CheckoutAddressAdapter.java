@@ -44,8 +44,8 @@ public class CheckoutAddressAdapter extends RecyclerView.Adapter<CheckoutViewHol
     public void onBindViewHolder(@NonNull CheckoutViewHolder holder, int position) {
         Address address = list.get(position);
         String detailAddress = address.getDetail()
-                + ", " + address.getWardPrefix() + " " + address.getWardName()
-                + ", " + address.getDistrictPrefix() + " " + address.getDistrictName()
+                + ", "  + address.getWardName()
+                + ", "  + address.getDistrictName()
                 + ", " + address.getProvinceName();
 
         holder.getTxtItemCheckoutAddressName().setText(address.getFullName());

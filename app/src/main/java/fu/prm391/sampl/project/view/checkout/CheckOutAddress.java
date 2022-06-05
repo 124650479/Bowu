@@ -139,7 +139,7 @@ public class CheckOutAddress extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 btnPlaceOrder.setEnabled(false);
-                Call<CheckOutOrderResponse> call = ApiClient.getOrderService().checkout("Bearer " + token, new CheckOutOrderRequest(selectAddress.getId()));
+                Call<CheckOutOrderResponse> call = ApiClient.getOrderService().checkout(token, selectAddress.getId());
                 call.enqueue(new Callback<CheckOutOrderResponse>() {
                     @Override
                     public void onResponse(Call<CheckOutOrderResponse> call, Response<CheckOutOrderResponse> response) {
@@ -149,14 +149,14 @@ public class CheckOutAddress extends AppCompatActivity {
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
                         } else {
-                            Toast.makeText(CheckOutAddress.this, "Product quantity is not enough", Toast.LENGTH_LONG).show();
+                            Toast.makeText(CheckOutAddress.this, "所选商品已经售空", Toast.LENGTH_LONG).show();
                             finish();
                         }
                     }
 
                     @Override
                     public void onFailure(Call<CheckOutOrderResponse> call, Throwable t) {
-                        Toast.makeText(CheckOutAddress.this, "Product quantity is not enough", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CheckOutAddress.this, "所选商品已经售空", Toast.LENGTH_SHORT).show();
                         finish();
                     }
                 });
@@ -169,8 +169,8 @@ public class CheckOutAddress extends AppCompatActivity {
 
         this.txtCheckoutConfirmationAddressName.setText(address.getFullName());
         this.txtCheckoutConfirmationAddressDetail.setText(address.getDetail()
-                + ", " + address.getWardPrefix() + " " + address.getWardName()
-                + ", " + address.getDistrictPrefix() + " " + address.getDistrictName()
+                + ", " + address.getWardName()
+                + ", " + address.getDistrictName()
                 + ", " + address.getProvinceName());
         this.txtCheckoutConfirmationAddressPhone.setText(address.getPhone());
     }
@@ -204,7 +204,7 @@ public class CheckOutAddress extends AppCompatActivity {
 
     private void loadDataAddress() {
         this.btnCheckoutAddressSubmit.setEnabled(false);
-        Call<GetAllAddressResponse> call = ApiClient.getAddressService().getAllAddress("Bearer " + token);
+        Call<GetAllAddressResponse> call = ApiClient.getAddressService().getAllAddress(token);
         call.enqueue(new Callback<GetAllAddressResponse>() {
             @Override
             public void onResponse(Call<GetAllAddressResponse> call, Response<GetAllAddressResponse> response) {
@@ -246,8 +246,8 @@ public class CheckOutAddress extends AppCompatActivity {
 
     private void setStepView() {
         this.stepView.setSteps(new ArrayList<String>() {{
-            add("Personal Info");
-            add("Confirmation");
+            add("收货地址");
+            add("付款确认");
         }});
     }
 

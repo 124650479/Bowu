@@ -88,21 +88,21 @@
     <!--  Profile Shipping Address  -->
     <string name="PSA__title">Shipping Address</string>
     <string name="PSA__second_title">Address</string>
-    <string name="PSA__btn_create_new_address">New address</string>
+    <string name="PSA__btn_create_new_address">新地址</string>
     <string name="PSA__edit">Edit</string>
 
     <!--  Create New Address  -->
-    <string name="CNA__txtTitle">New Address</string>
-    <string name="CNA__txtName">Full name*</string>
-    <string name="CNA__txtPhone">Phone*</string>
-    <string name="CNA__txtDetail">Detail*</string>
-    <string name="CNA__cbxProvince">Province*</string>
-    <string name="CNA__cbxDistrict">District*</string>
-    <string name="CNA__cbxWard">Ward*</string>
-    <string name="CNA__editName">Enter your name …</string>
-    <string name="CNA__editPhone">Enter your phone …</string>
-    <string name="CNA__editDetail">Enter detail address …</string>
-    <string name="CNA__btnSubmit">Create</string>
+    <string name="CNA__txtTitle">新地址</string>
+    <string name="CNA__txtName">收件人姓名*</string>
+    <string name="CNA__txtPhone">电话号码*</string>
+    <string name="CNA__txtDetail">详细地址*</string>
+    <string name="CNA__cbxProvince">省份*</string>
+    <string name="CNA__cbxDistrict">城市*</string>
+    <string name="CNA__cbxWard">区域*</string>
+    <string name="CNA__editName">输入收货人姓名 …</string>
+    <string name="CNA__editPhone">输入收货人电话号码 …</string>
+    <string name="CNA__editDetail">输入详细地址 …</string>
+    <string name="CNA__btnSubmit">创建</string>
 
     <!--  Fragment Cart  -->
     <string name="FA__title">购物车</string>
@@ -113,18 +113,18 @@
     <string name="FA__checkOut">结账</string>
 
     <!--  Check Out  -->
-    <string name="CO__title">Checkout</string>
-    <string name="CO__addressTitle">Address</string>
-    <string name="CO__addressContinue">Continue</string>
-    <string name="CO__addressPlaceOrder">Place Order</string>
+    <string name="CO__title">结账</string>
+    <string name="CO__addressTitle">地址</string>
+    <string name="CO__addressContinue">继续</string>
+    <string name="CO__addressPlaceOrder">支付</string>
 
     <!--  Success Check Out  -->
-    <string name="SCO__thanks">Thank you!</string>
-    <string name="SCO__detail">Your Order is Completed.\nPlease Check the Delivery Status at\nHistory Order Pages.</string>
-    <string name="SCO__btnExit">Continue Shopping</string>
+    <string name="SCO__thanks">支付成功！</string>
+    <string name="SCO__detail">您的订单已经提交，请注意查看物流信息及时查收</string>
+    <string name="SCO__btnExit">继续浏览</string>
 
     <string name="searchLabel">搜索</string>
-    <string name="searchProductHintLabel"><font size="16">Search Products</font></string>
+    <string name="searchProductHintLabel"><font size="16">搜索关键词</font></string>
     <string name="contentDesImageButtonSearch">Search Image</string>
     <string name="percentHintLabel">10%</string>
     <string name="old_price">Old Price</string>
@@ -147,9 +147,8 @@
     <string name="lastNameLabel">Last Name</string>
     <string name="emailAddressLabel">Email Address</string>
     <string-array name="Gender">
-        <item>Male</item>
-        <item>Female</item>
-        <item>Other</item>
+        <item>男</item>
+        <item>女</item>
     </string-array>
     <string name="phoneLabel">Phone</string>
     <string name="btnSave">Save</string>

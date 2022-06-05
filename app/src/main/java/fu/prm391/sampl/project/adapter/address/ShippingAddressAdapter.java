@@ -58,8 +58,8 @@ public class ShippingAddressAdapter extends RecyclerView.Adapter<ShippingAddress
     public void onBindViewHolder(@NonNull ShippingAddressViewHolder holder, int position) {
         Address address = list.get(position);
         String detailAddress = address.getDetail()
-                + ", " + address.getWardPrefix() + " " + address.getWardName()
-                + ", " + address.getDistrictPrefix() + " " + address.getDistrictName()
+                + ", "  + address.getWardName()
+                + ", "  + address.getDistrictName()
                 + ", " + address.getProvinceName();
 
         holder.getTxtName().setText(address.getFullName());

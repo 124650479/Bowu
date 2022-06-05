@@ -34,15 +34,9 @@ public class Address {
     @SerializedName("districtName")
     @Expose
     private String districtName;
-    @SerializedName("districtPrefix")
-    @Expose
-    private String districtPrefix;
     @SerializedName("wardName")
     @Expose
     private String wardName;
-    @SerializedName("wardPrefix")
-    @Expose
-    private String wardPrefix;
 
     public Address(int id, int userId, String fullName, String phone, String detail, int isDefault, String createdAt, String updatedAt, String provinceName, String districtName, String districtPrefix, String wardName, String wardPrefix) {
         this.id = id;
@@ -55,9 +49,7 @@ public class Address {
         this.updatedAt = updatedAt;
         this.provinceName = provinceName;
         this.districtName = districtName;
-        this.districtPrefix = districtPrefix;
         this.wardName = wardName;
-        this.wardPrefix = wardPrefix;
     }
 
     public int getId() {
@@ -140,27 +132,11 @@ public class Address {
         this.districtName = districtName;
     }
 
-    public String getDistrictPrefix() {
-        return districtPrefix;
-    }
-
-    public void setDistrictPrefix(String districtPrefix) {
-        this.districtPrefix = districtPrefix;
-    }
-
     public String getWardName() {
         return wardName;
     }
 
     public void setWardName(String wardName) {
         this.wardName = wardName;
-    }
-
-    public String getWardPrefix() {
-        return wardPrefix;
-    }
-
-    public void setWardPrefix(String wardPrefix) {
-        this.wardPrefix = wardPrefix;
     }
 }

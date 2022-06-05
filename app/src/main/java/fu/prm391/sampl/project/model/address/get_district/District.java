@@ -10,14 +10,10 @@ public class District {
     @SerializedName("name")
     @Expose
     private String name;
-    @SerializedName("prefix")
-    @Expose
-    private String prefix;
 
     public District(int id, String name, String prefix) {
         this.id = id;
         this.name = name;
-        this.prefix = prefix;
     }
 
     public int getId() {
@@ -36,11 +32,4 @@ public class District {
         this.name = name;
     }
 
-    public String getPrefix() {
-        return prefix;
-    }
-
-    public void setPrefix(String prefix) {
-        this.prefix = prefix;
-    }
 }

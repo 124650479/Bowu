@@ -32,7 +32,7 @@ public class DistrictAdapter extends ArrayAdapter<District> {
         District district = getItem(position);
 
         TextView textView = view.findViewById(R.id.txt_spinner_new_address);
-        textView.setText(district.getPrefix() + " " + district.getName());
+        textView.setText(district.getName());
 
         return view;
     }
@@ -45,7 +45,7 @@ public class DistrictAdapter extends ArrayAdapter<District> {
         District district = getItem(position);
 
         TextView textView = convertView.findViewById(R.id.txt_spinner_new_address);
-        textView.setText(district.getPrefix() + " " + district.getName());
+        textView.setText(district.getName());
 
         return convertView;
     }

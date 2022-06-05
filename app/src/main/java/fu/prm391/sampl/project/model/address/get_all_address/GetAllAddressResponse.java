@@ -17,12 +17,17 @@ public class GetAllAddressResponse {
     @Expose
     private List<Address> listAddress;
 
+    @SerializedName("code")
+    @Expose
+    private String code;
+
     public GetAllAddressResponse() {
     }
 
-    public GetAllAddressResponse(String message, List<Address> listAddress) {
+    public GetAllAddressResponse(String message, List<Address> listAddress,String code) {
         this.message = message;
         this.listAddress = listAddress;
+        this.code=code;
     }
 
     public String getMessage() {
@@ -39,5 +44,13 @@ public class GetAllAddressResponse {
 
     public void setListAddress(List<Address> listAddress) {
         this.listAddress = listAddress;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 }

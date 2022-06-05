@@ -1,9 +1,7 @@
 package fu.prm391.sampl.project.remote.service;
 
 import fu.prm391.sampl.project.model.order.OrderResponse;
-import fu.prm391.sampl.project.model.order.add_to_cart.AddToCartRequest;
 import fu.prm391.sampl.project.model.order.add_to_cart.AddToCartResponse;
-import fu.prm391.sampl.project.model.order.check_out.CheckOutOrderRequest;
 import fu.prm391.sampl.project.model.order.check_out.CheckOutOrderResponse;
 import fu.prm391.sampl.project.model.order.decrease_quantity.DecreaseQuantityRequest;
 import fu.prm391.sampl.project.model.order.decrease_quantity.DecreaseQuantityResponse;
@@ -12,7 +10,6 @@ import fu.prm391.sampl.project.model.order.delete_order.DeleteOrderResponse;
 import fu.prm391.sampl.project.model.order.get_all_order.GetAllOrderResponse;
 import fu.prm391.sampl.project.model.order.increase_quantity.IncreaseQuantityRequest;
 import fu.prm391.sampl.project.model.order.increase_quantity.IncreaseQuantityResponse;
-import fu.prm391.sampl.project.model.product.Product;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -41,8 +38,9 @@ public interface OrderService {
     @HTTP(method = "DELETE", path = "order/delete", hasBody = true)
     Call<DeleteOrderResponse> deleteOrder(@Header("Authorization") String token, @Body DeleteOrderRequest request);
 
-    @POST("order/check-out")
-    Call<CheckOutOrderResponse> checkout(@Header("Authorization") String token, @Body CheckOutOrderRequest request);
+    @POST("order/pay")
+    Call<CheckOutOrderResponse> checkout(@Header("token") String token,
+                                         @Query("adid") int adid);
 
     @GET("order/histories")
     Call<OrderResponse> getOrdersHistoryByStatus(@Header("Authorization") String token,

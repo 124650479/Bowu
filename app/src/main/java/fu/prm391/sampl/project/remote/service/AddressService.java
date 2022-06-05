@@ -25,23 +25,25 @@ import retrofit2.http.Query;
 
 public interface AddressService {
 
-    @GET("address/get-all")
-    Call<GetAllAddressResponse> getAllAddress(@Header("Authorization") String token);
+    @GET("order/get_address")
+    Call<GetAllAddressResponse> getAllAddress(@Header("token") String token);
 
     @PATCH("address/update-default")
     Call<UpdateDefaultAddressResponse> updateDefaultAddress(@Header("Authorization") String token, @Body UpdateDefaultAddressRequest request);
 
-    @GET("address/province")
+    @GET("address/get_provinces")
     Call<GetProvinceResponse> getProvinceAddress();
 
-    @GET("address/district")
-    Call<GetDistrictResponse> getDistrictAddress(@Query("id") int id);
+    @GET("address/get_districts")
+    Call<GetDistrictResponse> getDistrictAddress(@Query("proid") int proid);
 
-    @GET("address/ward")
-    Call<GetWardResponse> getWardAddress(@Query("id") int id);
+    @GET("address/get_wards")
+    Call<GetWardResponse> getWardAddress(@Query("proid") int proid,
+                                         @Query("disid") int disid);
 
-    @POST("address/create")
-    Call<CreateNewAddressResponse> createNewAddress(@Header("Authorization") String token, @Body CreateNewAddressRequest createNewAddressRequest);
+    @POST("address/user/add")
+    Call<CreateNewAddressResponse> createNewAddress(@Header("token") String token,
+                                                    @Body CreateNewAddressRequest createNewAddressRequest);
 
     @HTTP(method = "DELETE", path = "address/delete", hasBody = true)
     Call<DeleteAddressResponse> deleteAddress(@Header("Authorization") String token, @Body DeleteAddressRequest deleteAddressRequest);

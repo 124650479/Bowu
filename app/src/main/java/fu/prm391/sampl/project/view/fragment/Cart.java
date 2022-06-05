@@ -1,27 +1,21 @@
 package fu.prm391.sampl.project.view.fragment;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.List;
 
@@ -40,19 +34,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link Cart#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class Cart extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
@@ -81,18 +66,8 @@ public class Cart extends Fragment {
     private double tax;
 
     public Cart() {
-        // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Cart.
-     */
-    // TODO: Rename and change types and number of parameters
     public static Cart newInstance(String param1, String param2) {
         Cart fragment = new Cart();
         Bundle args = new Bundle();
@@ -188,13 +163,11 @@ public class Cart extends Fragment {
                     }
                 } else {
                     progressBarCart.setVisibility(View.INVISIBLE);
-                    Log.e("onResponse", "asdasdasdadnasudgbasbsdugfyhbsuhfgbsdufhg");
                 }
             }
 
             @Override
             public void onFailure(Call<GetAllOrderResponse> call, Throwable t) {
-                Log.e("onResponse", t.toString());
             }
         });
     }
@@ -230,20 +203,17 @@ public class Cart extends Fragment {
         @Override
         public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
             int position = viewHolder.getBindingAdapterPosition();
-            Call<DeleteOrderResponse> call = ApiClient.getOrderService().deleteOrder("Bearer " + token, new DeleteOrderRequest(list.get(position).getProduct().getId()));
+            Call<DeleteOrderResponse> call = ApiClient.getOrderService().deleteOrder(token, new DeleteOrderRequest(list.get(position).getProduct().getId()));
             call.enqueue(new Callback<DeleteOrderResponse>() {
                 @Override
                 public void onResponse(Call<DeleteOrderResponse> call, Response<DeleteOrderResponse> response) {
                     if (response.isSuccessful()) {
-                        Log.i("Delete order", "Delete order successfully");
                     } else {
-                        Log.e("Delete order", "Delete order failure" + response.errorBody());
                     }
                 }
 
                 @Override
                 public void onFailure(Call<DeleteOrderResponse> call, Throwable t) {
-                    Log.e("Delete order", "Delete order failure: " + t.toString());
                 }
             });
 

@@ -30,7 +30,7 @@ public class WardAdapter extends ArrayAdapter<Ward> {
         Ward ward = getItem(position);
 
         TextView textView = view.findViewById(R.id.txt_spinner_new_address);
-        textView.setText(ward.getPrefix() + " " + ward.getName());
+        textView.setText(ward.getName());
 
         return view;
     }
@@ -43,7 +43,7 @@ public class WardAdapter extends ArrayAdapter<Ward> {
         Ward ward = getItem(position);
 
         TextView textView = convertView.findViewById(R.id.txt_spinner_new_address);
-        textView.setText(ward.getPrefix() + " " + ward.getName());
+        textView.setText(ward.getName());
 
         return convertView;
     }
