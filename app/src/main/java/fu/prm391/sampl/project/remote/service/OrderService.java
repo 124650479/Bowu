@@ -12,6 +12,7 @@ import fu.prm391.sampl.project.model.order.delete_order.DeleteOrderResponse;
 import fu.prm391.sampl.project.model.order.get_all_order.GetAllOrderResponse;
 import fu.prm391.sampl.project.model.order.increase_quantity.IncreaseQuantityRequest;
 import fu.prm391.sampl.project.model.order.increase_quantity.IncreaseQuantityResponse;
+import fu.prm391.sampl.project.model.product.Product;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -23,11 +24,13 @@ import retrofit2.http.Query;
 
 public interface OrderService {
 
-    @POST("order/add")
-    Call<AddToCartResponse> addProductToCart(@Header("Authorization") String token, @Body AddToCartRequest addToCartRequest);
+    @POST("order/add_to_cart")
+    Call<AddToCartResponse> addProductToCart(@Header("token") String token,
+                                             @Query("productid") int productid,
+                                             @Query("quantity") int quantity);
 
-    @GET("orders")
-    Call<GetAllOrderResponse> getAllOrder(@Header("Authorization") String token);
+    @GET("order/get_carts")
+    Call<GetAllOrderResponse> getAllOrder(@Header("token") String token);
 
     @PATCH("order/increase-quantity")
     Call<IncreaseQuantityResponse> increaseQuantityOrder(@Header("Authorization") String token, @Body IncreaseQuantityRequest request);

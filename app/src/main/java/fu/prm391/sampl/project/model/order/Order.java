@@ -11,9 +11,6 @@ public class Order {
     @SerializedName("product")
     @Expose
     private Product product;
-    @SerializedName("address")
-    @Expose
-    private Address address;
     @SerializedName("status")
     @Expose
     private int status;
@@ -32,7 +29,6 @@ public class Order {
 
     public Order(Product product, Address address, int status, int quantity, String createdAt, String updatedAt) {
         this.product = product;
-        this.address = address;
         this.status = status;
         this.quantity = quantity;
         this.createdAt = createdAt;
@@ -45,14 +41,6 @@ public class Order {
 
     public void setProduct(Product product) {
         this.product = product;
-    }
-
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
     }
 
     public int getStatus() {

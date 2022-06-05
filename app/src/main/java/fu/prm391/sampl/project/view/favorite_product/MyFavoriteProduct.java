@@ -105,9 +105,7 @@ public class MyFavoriteProduct extends AppCompatActivity {
         public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
             int position = viewHolder.getBindingAdapterPosition();
             Product product = deleteItem(position);
-            DeleteFavoriteRequest deleteFavoriteRequest = new DeleteFavoriteRequest();
-            deleteFavoriteRequest.setProductId(product.getId());
-            Call<DeleteFavoriteResponse> deleteFavoriteResponseCall = ApiClient.getProductService().deleteFavoriteProduct("Bearer " + token, deleteFavoriteRequest);
+            Call<DeleteFavoriteResponse> deleteFavoriteResponseCall = ApiClient.getProductService().deleteFavoriteProduct(token, product.getId());
             deleteFavoriteResponseCall.enqueue(new Callback<DeleteFavoriteResponse>() {
                 @Override
                 public void onResponse(Call<DeleteFavoriteResponse> call, Response<DeleteFavoriteResponse> response) {

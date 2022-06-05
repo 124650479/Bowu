@@ -14,13 +14,17 @@ public class GetAllOrderResponse {
     @SerializedName("data")
     @Expose
     private List<Order> data = null;
+    @SerializedName("code")
+    @Expose
+    private String code;
 
     public GetAllOrderResponse() {
     }
 
-    public GetAllOrderResponse(String message, List<Order> data) {
+    public GetAllOrderResponse(String message, List<Order> data,String code) {
         this.message = message;
         this.data = data;
+        this.code=code;
     }
 
     public String getMessage() {
@@ -37,5 +41,13 @@ public class GetAllOrderResponse {
 
     public void setData(List<Order> data) {
         this.data = data;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 }

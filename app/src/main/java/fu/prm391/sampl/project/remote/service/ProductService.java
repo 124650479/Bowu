@@ -42,13 +42,13 @@ public interface ProductService {
     @GET("favorites")
     Call<ProductListResponse> getFavoriteProducts(@Header("Authorization") String token);
 
-    @POST("favorite/add")
-    Call<AddFavoriteResponse> addFavoriteProduct(@Header("Authorization") String token,
-                                                 @Body AddFavoriteRequest addFavoriteRequest);
+    @POST("/product/favorite/add")
+    Call<AddFavoriteResponse> addFavoriteProduct(@Header("token") String token,
+                                                 @Query("id") int id);
 
-    @HTTP(method = "DELETE", path = "favorite/delete", hasBody = true)
-    Call<DeleteFavoriteResponse> deleteFavoriteProduct(@Header("Authorization") String token,
-                                                       @Body DeleteFavoriteRequest deleteFavoriteRequest);
+    @POST("/product/favorite/del")
+    Call<DeleteFavoriteResponse> deleteFavoriteProduct(@Header("token") String token,
+                                                       @Query("id") int id);
 
     @GET("/allow/get_products_by_caterory")
     Call<ProductListResponse> getSimilarProductByCategoryId(@Query("categoryId") int categoryId);

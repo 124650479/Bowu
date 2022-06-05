@@ -4,10 +4,21 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class AddToCartResponse {
-
     @SerializedName("message")
     @Expose
     private String message;
+
+    @SerializedName("code")
+    @Expose
+    private String code;
+
+    public AddToCartResponse() {
+    }
+
+    public AddToCartResponse(String message,String code) {
+        this.message = message;
+        this.code=code;
+    }
 
     public String getMessage() {
         return message;
@@ -15,5 +26,13 @@ public class AddToCartResponse {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getCode() {
+        return code;
     }
 }

@@ -105,12 +105,12 @@
     <string name="CNA__btnSubmit">Create</string>
 
     <!--  Fragment Cart  -->
-    <string name="FA__title">Cart</string>
-    <string name="FA__subTotal">Sub Total</string>
-    <string name="FA__shippingFee">Shipping Fee</string>
-    <string name="FA__estimatingTax">Estimating Tax</string>
-    <string name="FA__total">Total</string>
-    <string name="FA__checkOut">Checkout</string>
+    <string name="FA__title">购物车</string>
+    <string name="FA__subTotal">售价</string>
+    <string name="FA__shippingFee">运费</string>
+    <string name="FA__estimatingTax">税款</string>
+    <string name="FA__total">合计</string>
+    <string name="FA__checkOut">结账</string>
 
     <!--  Check Out  -->
     <string name="CO__title">Checkout</string>

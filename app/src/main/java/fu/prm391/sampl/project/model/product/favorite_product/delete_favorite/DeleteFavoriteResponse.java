@@ -9,11 +9,16 @@ public class DeleteFavoriteResponse {
     @Expose
     private String message;
 
+    @SerializedName("code")
+    @Expose
+    private String code;
+
     public DeleteFavoriteResponse() {
     }
 
-    public DeleteFavoriteResponse(String message) {
+    public DeleteFavoriteResponse(String message,String code) {
         this.message = message;
+        this.code=code;
     }
 
     public String getMessage() {
@@ -22,5 +27,13 @@ public class DeleteFavoriteResponse {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getCode() {
+        return code;
     }
 }

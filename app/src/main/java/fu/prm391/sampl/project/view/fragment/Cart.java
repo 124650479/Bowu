@@ -114,7 +114,6 @@ public class Cart extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_cart, container, false);
     }
 
@@ -134,6 +133,7 @@ public class Cart extends Fragment {
         this.txtCardSubTotalValue = view.findViewById(R.id.txtCardSubTotalValue);
 
         this.btnCartCheckout = view.findViewById(R.id.btnCartCheckout);
+        progressBarCart.setVisibility(View.VISIBLE);
 
         //验证本地令牌是否有效
         if (token.equals("")) {
@@ -169,8 +169,8 @@ public class Cart extends Fragment {
     }
 
     private void loadAllListOrder() {
-        progressBarCart.setVisibility(View.INVISIBLE);
-/*        call = ApiClient.getOrderService().getAllOrder("Bearer " + this.token);
+
+        call = ApiClient.getOrderService().getAllOrder(this.token);
         call.enqueue(new Callback<GetAllOrderResponse>() {
             @Override
             public void onResponse(Call<GetAllOrderResponse> call, Response<GetAllOrderResponse> response) {
@@ -182,9 +182,7 @@ public class Cart extends Fragment {
                     ItemTouchHelper itemTouchHelper = new ItemTouchHelper(cartSimpleCallback);
                     itemTouchHelper.attachToRecyclerView(recyclerViewMainCart);
                     progressBarCart.setVisibility(View.INVISIBLE);
-
                     renderCheckout(list);
-
                     if (list.size() != 0) {
                         btnCartCheckout.setEnabled(true);
                     }
@@ -198,7 +196,7 @@ public class Cart extends Fragment {
             public void onFailure(Call<GetAllOrderResponse> call, Throwable t) {
                 Log.e("onResponse", t.toString());
             }
-        });*/
+        });
     }
 
     public void renderCheckout(List<Order> list) {
