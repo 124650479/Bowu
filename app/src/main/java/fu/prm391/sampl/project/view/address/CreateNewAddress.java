@@ -20,6 +20,7 @@ import fu.prm391.sampl.project.adapter.address.DistrictAdapter;
 import fu.prm391.sampl.project.adapter.address.ProvinceAdapter;
 import fu.prm391.sampl.project.adapter.address.WardAdapter;
 import fu.prm391.sampl.project.helper.PreferencesHelpers;
+import fu.prm391.sampl.project.model.address.Address;
 import fu.prm391.sampl.project.model.address.create_new_address.CreateNewAddressRequest;
 import fu.prm391.sampl.project.model.address.create_new_address.CreateNewAddressResponse;
 import fu.prm391.sampl.project.model.address.get_district.District;
@@ -28,7 +29,6 @@ import fu.prm391.sampl.project.model.address.get_province.GetProvinceResponse;
 import fu.prm391.sampl.project.model.address.get_province.Province;
 import fu.prm391.sampl.project.model.address.get_ward.GetWardResponse;
 import fu.prm391.sampl.project.model.address.get_ward.Ward;
-import fu.prm391.sampl.project.model.address.update_address.UpdateAddressRequest;
 import fu.prm391.sampl.project.model.address.update_address.UpdateAddressResponse;
 import fu.prm391.sampl.project.remote.ApiClient;
 import retrofit2.Call;
@@ -39,6 +39,7 @@ public class CreateNewAddress extends AppCompatActivity {
 
     private Button btnCnaBack;
     private Button btnCnaSubmit;
+    private Address address;
 
     private Spinner spinnerCnaProvince;
     private Spinner spinnerCnaDistrict;
@@ -103,12 +104,13 @@ public class CreateNewAddress extends AppCompatActivity {
     private void setInitLayout() {
         if (isUpdateAddress()) {
             Intent intent = getIntent();
-            title.setText("Update Address");
-            btnCnaSubmit.setText("Update");
+            title.setText("更新地址");
+            btnCnaSubmit.setText("保存");
+            address = (Address) getIntent().getSerializableExtra("address");
 
-            editTextName.setText(intent.getStringExtra("fullName"));
-            editTextPhone.setText(intent.getStringExtra("phone"));
-            editTextDetail.setText(intent.getStringExtra("detail"));
+            editTextName.setText(address.getFullName());
+            editTextPhone.setText(address.getPhone());
+            editTextDetail.setText(address.getDetail());
         }
     }
 
@@ -166,19 +168,15 @@ public class CreateNewAddress extends AppCompatActivity {
 
                 btnCnaSubmit.setEnabled(false);
                 if (isUpdateAddress()) {
-                    Intent intent = getIntent();
 
-                    UpdateAddressRequest updateAddressRequest = new UpdateAddressRequest();
+                    address.setFullName(name);
+                    address.setPhone(phone);
+                    address.setProvinceId(provinceId);
+                    address.setDistrictId(districtId);
+                    address.setWardId(wardId);
+                    address.setDetail(detail);
 
-                    updateAddressRequest.setId(intent.getIntExtra("id", 0));
-                    updateAddressRequest.setFullName(name);
-                    updateAddressRequest.setPhone(phone);
-                    updateAddressRequest.setProvinceId(provinceId);
-                    updateAddressRequest.setDistrictId(districtId);
-                    updateAddressRequest.setWardId(wardId);
-                    updateAddressRequest.setDetail(detail);
-
-                    Call<UpdateAddressResponse> call = ApiClient.getAddressService().updateAddress(token, updateAddressRequest);
+                    Call<UpdateAddressResponse> call = ApiClient.getAddressService().updateAddress(token, address);
                     call.enqueue(new Callback<UpdateAddressResponse>() {
                         @Override
                         public void onResponse(Call<UpdateAddressResponse> call, Response<UpdateAddressResponse> response) {

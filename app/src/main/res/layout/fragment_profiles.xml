@@ -104,7 +104,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView8"
         android:layout_width="match_parent"
-        android:layout_height="138dp"
+        android:layout_height="100dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="34dp"
         android:layout_marginEnd="20dp"
@@ -116,33 +116,6 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
-            <ImageView
-                android:id="@+id/imageVerifiedProfile"
-                android:layout_width="15dp"
-                android:layout_height="15dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="7dp"
-                android:layout_marginBottom="25dp"
-                android:contentDescription="@string/DesImage"
-                android:src="@drawable/verified"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/labelVerifiedProfile"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <TextView
-                android:id="@+id/labelVerifiedProfile"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="39dp"
-                android:layout_marginTop="12dp"
-                android:fontFamily="@font/poppins"
-                android:text="@string/LabelVeriedUser"
-                android:textColor="#000000"
-                android:textSize="13sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cardImageProfiles" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardImageProfiles"
@@ -192,7 +165,8 @@
                 app:icon="?attr/actionModePasteDrawable"
                 app:iconPadding="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/txtEmailProfiles"
@@ -206,24 +180,6 @@
                 android:textSize="13sp"
                 app:layout_constraintStart_toEndOf="@+id/cardImageProfiles"
                 app:layout_constraintTop_toBottomOf="@+id/txtNameProfiles" />
-
-            <Button
-                android:id="@+id/btnVerifyProfiles"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="6dp"
-                android:fontFamily="@font/poppins_semibold"
-                android:padding="0dp"
-                android:paddingLeft="0dp"
-                android:paddingTop="0dp"
-                android:paddingRight="0dp"
-                android:paddingBottom="0dp"
-                android:text="@string/LabelVerifyNow"
-                android:textSize="13sp"
-                app:cornerRadius="@null"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/btnEditProfiles" />
 
             <ImageView
                 android:id="@+id/imageView5"
@@ -426,63 +382,6 @@
         app:layout_constraintEnd_toEndOf="@+id/viewShippingAddressProfiles"
         app:layout_constraintTop_toTopOf="@+id/viewShippingAddressProfiles" />
 
-    <ImageView
-        android:id="@+id/arrowSGiftCards"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-
-        android:contentDescription="@string/DesImage"
-        android:src="@drawable/arrowright"
-        app:layout_constraintEnd_toEndOf="@+id/viewContactUsProfiles"
-        app:layout_constraintTop_toTopOf="@+id/viewContactUsProfiles" />
-
-    <View
-        android:id="@+id/viewContactUsProfiles"
-        android:layout_width="0dp"
-        android:layout_height="41dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewChangePassword"
-        tools:ignore="MissingConstraints" />
-
-    <View
-
-        android:id="@+id/line5"
-        android:layout_width="0dp"
-        android:layout_height="2dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
-        android:background="#C6C5C5"
-        android:backgroundTint="#C6C5C5"
-        app:layout_constraintBottom_toBottomOf="@+id/viewContactUsProfiles"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:id="@+id/contactUs"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:fontFamily="@font/poppins_semibold"
-        android:gravity="top"
-        android:lineSpacingExtra="0sp"
-        android:text="@string/contact_us"
-        android:textAppearance="@style/my_orders"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/viewContactUsProfiles" />
-
     <TextView
         android:id="@+id/Logout"
         android:layout_width="wrap_content"
@@ -509,7 +408,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewContactUsProfiles"
+        app:layout_constraintTop_toBottomOf="@+id/viewChangePassword"
         tools:ignore="MissingConstraints" />
 
     <ImageView

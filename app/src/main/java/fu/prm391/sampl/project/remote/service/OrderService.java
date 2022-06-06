@@ -43,6 +43,6 @@ public interface OrderService {
                                          @Query("adid") int adid);
 
     @GET("order/histories")
-    Call<OrderResponse> getOrdersHistoryByStatus(@Header("Authorization") String token,
+    Call<OrderResponse> getOrdersHistoryByStatus(@Header("token") String token,
                                                  @Query("status") int status);
 }

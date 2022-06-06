@@ -3,7 +3,9 @@ package fu.prm391.sampl.project.model.address;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Address {
+import java.io.Serializable;
+
+public class Address implements Serializable {
     @SerializedName("id")
     @Expose
     private int id;
@@ -38,19 +40,17 @@ public class Address {
     @Expose
     private String wardName;
 
-    public Address(int id, int userId, String fullName, String phone, String detail, int isDefault, String createdAt, String updatedAt, String provinceName, String districtName, String districtPrefix, String wardName, String wardPrefix) {
-        this.id = id;
-        this.userId = userId;
-        this.fullName = fullName;
-        this.phone = phone;
-        this.detail = detail;
-        this.isDefault = isDefault;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
-        this.provinceName = provinceName;
-        this.districtName = districtName;
-        this.wardName = wardName;
-    }
+    @SerializedName("provinceId")
+    @Expose
+    private int provinceId;
+
+    @SerializedName("districtId")
+    @Expose
+    private int districtId;
+
+    @SerializedName("wardId")
+    @Expose
+    private int wardId;
 
     public int getId() {
         return id;
@@ -138,5 +138,66 @@ public class Address {
 
     public void setWardName(String wardName) {
         this.wardName = wardName;
+    }
+
+    public int getProvinceId() {
+        return provinceId;
+    }
+
+    public void setProvinceId(int provinceId) {
+        this.provinceId = provinceId;
+    }
+
+    public int getDistrictId() {
+        return districtId;
+    }
+
+    public void setDistrictId(int districtId) {
+        this.districtId = districtId;
+    }
+
+    public int getWardId() {
+        return wardId;
+    }
+
+    public void setWardId(int wardId) {
+        this.wardId = wardId;
+    }
+
+    public Address(int id, int userId, String fullName, String phone, String detail, int isDefault, String createdAt, String updatedAt, String provinceName, String districtName, String wardName, int provinceId, int districtId, int wardId) {
+        this.id = id;
+        this.userId = userId;
+        this.fullName = fullName;
+        this.phone = phone;
+        this.detail = detail;
+        this.isDefault = isDefault;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+        this.provinceName = provinceName;
+        this.districtName = districtName;
+        this.wardName = wardName;
+        this.provinceId = provinceId;
+        this.districtId = districtId;
+        this.wardId = wardId;
+    }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", fullName='" + fullName + '\'' +
+                ", phone='" + phone + '\'' +
+                ", detail='" + detail + '\'' +
+                ", isDefault=" + isDefault +
+                ", createdAt='" + createdAt + '\'' +
+                ", updatedAt='" + updatedAt + '\'' +
+                ", provinceName='" + provinceName + '\'' +
+                ", districtName='" + districtName + '\'' +
+                ", wardName='" + wardName + '\'' +
+                ", provinceId=" + provinceId +
+                ", districtId=" + districtId +
+                ", wardId=" + wardId +
+                '}';
     }
 }

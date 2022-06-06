@@ -2,6 +2,7 @@ package fu.prm391.sampl.project.view.account;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -35,11 +36,13 @@ public class ChangePassword extends AppCompatActivity {
     private Button btnSave;
     private String token;
     private ImageView btnShowOldPass, btnShowNewPass, btnShowRepass;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_password);
+        context=this;
 
         token = PreferencesHelpers.loadStringData(ChangePassword.this, "token");
 
@@ -60,10 +63,10 @@ public class ChangePassword extends AppCompatActivity {
                 if (TextUtils.isEmpty(oldPass.getText().toString().trim())
                         || TextUtils.isEmpty(newPass.getText().toString().trim())
                         || TextUtils.isEmpty(rePass.getText().toString().trim())) {
-                    Toast.makeText(ChangePassword.this, "All fields are required!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ChangePassword.this, "请确保填写完整", Toast.LENGTH_SHORT).show();
                     btnSave.setEnabled(true);
                 } else if (!newPass.getText().toString().equals(rePass.getText().toString())) {
-                    Toast.makeText(ChangePassword.this, "New Password & Re-Password must be the same!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ChangePassword.this, "新的密码不一致", Toast.LENGTH_SHORT).show();
                     btnSave.setEnabled(true);
                 } else {
                     // proceed change password
@@ -80,13 +83,15 @@ public class ChangePassword extends AppCompatActivity {
 
         Call<ChangePasswordResponse> changePasswordResponseCall = ApiClient
                 .getUserService()
-                .changePassword("Bearer " + token, changePasswordRequest);
+                .changePassword(token, newPass.getText().toString(),oldPass.getText().toString());
         changePasswordResponseCall.enqueue(new Callback<ChangePasswordResponse>() {
             @Override
             public void onResponse(Call<ChangePasswordResponse> call, Response<ChangePasswordResponse> response) {
                 if (response.isSuccessful()) {
                     Toast.makeText(ChangePassword.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
-                    finish();
+                    PreferencesHelpers.removeSinglePreference(context,"token");
+                    Intent intent = new Intent(context, Login.class);
+                    startActivity(intent);
                 } else {
                     try {
                         JSONObject jsonObject = new JSONObject(response.errorBody().string());
@@ -100,7 +105,6 @@ public class ChangePassword extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ChangePasswordResponse> call, Throwable t) {
-                btnSave.setEnabled(true);
             }
         });
     }

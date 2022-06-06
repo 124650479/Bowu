@@ -60,7 +60,7 @@ public class MyFavoriteProduct extends AppCompatActivity {
     }
 
     private void loadListFavoriteProducts() {
-        Call<ProductListResponse> productListResponseCall = ApiClient.getProductService().getFavoriteProducts("Bearer " + token);
+        Call<ProductListResponse> productListResponseCall = ApiClient.getProductService().getFavoriteProducts(token);
         productListResponseCall.enqueue(new Callback<ProductListResponse>() {
             @Override
             public void onResponse(Call<ProductListResponse> call, Response<ProductListResponse> response) {
@@ -119,14 +119,14 @@ public class MyFavoriteProduct extends AppCompatActivity {
                         }
                     } else {
                         revertItem(position, product);
-                        Toast.makeText(MyFavoriteProduct.this, "Delete failed", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MyFavoriteProduct.this, "删除失败", Toast.LENGTH_SHORT).show();
                     }
                 }
 
                 @Override
                 public void onFailure(Call<DeleteFavoriteResponse> call, Throwable t) {
                     revertItem(position, product);
-                    Toast.makeText(MyFavoriteProduct.this, "Delete failed", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MyFavoriteProduct.this, "删除失败", Toast.LENGTH_SHORT).show();
                 }
             });
         }

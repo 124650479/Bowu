@@ -10,13 +10,9 @@ public class User implements Serializable {
     @Expose
     private int id;
 
-    @SerializedName("firstName")
+    @SerializedName("username")
     @Expose
-    private String firstName;
-
-    @SerializedName("lastName")
-    @Expose
-    private String lastName;
+    private String username;
 
     @SerializedName("email")
     @Expose
@@ -46,15 +42,9 @@ public class User implements Serializable {
     @Expose
     private String updatedAt;
 
-
-    @SerializedName("isActive")
-    @Expose
-    private boolean isActive;
-
-    public User(int id, String firstName, String lastName, String email, String phone, String avatar, int gender, String birthday, String createdAt, String updatedAt, boolean isActive) {
+    public User(int id, String username,String email, String phone, String avatar, int gender, String birthday, String createdAt, String updatedAt, boolean isActive) {
         this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.username = username;
         this.email = email;
         this.phone = phone;
         this.avatar = avatar;
@@ -62,7 +52,6 @@ public class User implements Serializable {
         this.birthday = birthday;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
-        this.isActive = isActive;
     }
 
     public User() {
@@ -75,22 +64,6 @@ public class User implements Serializable {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -149,11 +122,11 @@ public class User implements Serializable {
         this.updatedAt = updatedAt;
     }
 
-    public boolean isActive() {
-        return isActive;
+    public String getUsername() {
+        return username;
     }
 
-    public void setActive(boolean active) {
-        isActive = active;
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

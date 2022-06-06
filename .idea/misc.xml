@@ -13,12 +13,22 @@
         <entry key="app/src/main/res/layout/activity_change_password.xml" value="0.3104166666666667" />
         <entry key="app/src/main/res/layout/activity_check_out_address.xml" value="0.3104166666666667" />
         <entry key="app/src/main/res/layout/activity_check_out_success.xml" value="0.3104166666666667" />
+        <entry key="app/src/main/res/layout/activity_contact_us.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_create_new_address.xml" value="0.24895833333333334" />
+        <entry key="app/src/main/res/layout/activity_edit_profiles.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_favorite_product.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_forgot_password.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_intro1.xml" value="0.2375" />
         <entry key="app/src/main/res/layout/activity_intro2.xml" value="0.2375" />
         <entry key="app/src/main/res/layout/activity_intro3.xml" value="0.2375" />
         <entry key="app/src/main/res/layout/activity_intro_app.xml" value="0.3880208333333333" />
-        <entry key="app/src/main/res/layout/activity_login.xml" value="0.3880208333333333" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.26614583333333336" />
+        <entry key="app/src/main/res/layout/activity_my_order_history.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_new_arrival_product.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_profile_shipping_address.xml" value="0.23333333333333334" />
+        <entry key="app/src/main/res/layout/activity_register.xml" value="0.2578125" />
+        <entry key="app/src/main/res/layout/activity_reset_password.xml" value="0.2578125" />
+        <entry key="app/src/main/res/layout/activity_specify_category.xml" value="0.2578125" />
         <entry key="app/src/main/res/layout/activity_specify_product.xml" value="0.31302083333333336" />
         <entry key="app/src/main/res/layout/activity_top_discount_product.xml" value="0.2640625" />
         <entry key="app/src/main/res/layout/activity_trending_product.xml" value="0.3880208333333333" />

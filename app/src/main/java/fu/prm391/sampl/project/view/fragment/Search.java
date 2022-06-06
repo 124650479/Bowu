@@ -1,5 +1,6 @@
 package fu.prm391.sampl.project.view.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -20,26 +21,20 @@ import java.util.ArrayList;
 
 import fu.prm391.sampl.project.R;
 import fu.prm391.sampl.project.adapter.product.ProductGridLayoutItemAdapter;
+import fu.prm391.sampl.project.helper.PreferencesHelpers;
 import fu.prm391.sampl.project.model.product.Product;
 import fu.prm391.sampl.project.model.product.get_list_product.ProductListResponse;
 import fu.prm391.sampl.project.remote.ApiClient;
+import fu.prm391.sampl.project.view.account.Login;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link Search#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class Search extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
@@ -48,19 +43,13 @@ public class Search extends Fragment {
     private EditText txtSearchQuery;
     private final int limitSearch = 10;
 
+    private String token;
+
     public Search() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment setting.
-     */
-    // TODO: Rename and change types and number of parameters
+
     public static Search newInstance(String param1, String param2) {
         Search fragment = new Search();
         Bundle args = new Bundle();
@@ -82,21 +71,30 @@ public class Search extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_search, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        view.setSaveEnabled(false);
+        this.token = PreferencesHelpers.loadStringData(getContext(), "token");
+        //验证本地令牌是否有效
+
+        if (token.equals("")) {
+            Intent intent = new Intent(getContext(), Login.class);
+            startActivity(intent);
+        }
         recyclerViewSearchedProduct = view.findViewById(R.id.recyclerViewSearchedProduct);
         txtSearchQuery = view.findViewById(R.id.txtProductSearchQuery);
+        txtSearchQuery.setText("");
         btnSearch = view.findViewById(R.id.imageButtonSearchProduct);
+
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (TextUtils.isEmpty(txtSearchQuery.getText().toString())) {
-                    Toast.makeText(getContext(), "Enter search query to search!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "输入关键字", Toast.LENGTH_SHORT).show();
                 } else {
                     searchProductsAction();
                 }
@@ -105,14 +103,14 @@ public class Search extends Fragment {
     }
 
     private void searchProductsAction() {
-        Call<ProductListResponse> productResponseCall = ApiClient.getProductService().searchProducts(txtSearchQuery.getText().toString(), limitSearch);
+        Call<ProductListResponse> productResponseCall = ApiClient.getProductService().searchProducts(token,txtSearchQuery.getText().toString(), limitSearch);
         productResponseCall.enqueue(new Callback<ProductListResponse>() {
             @Override
             public void onResponse(Call<ProductListResponse> call, Response<ProductListResponse> response) {
                 if (response.isSuccessful()) {
                     ArrayList<Product> products = (ArrayList<Product>) response.body().getData();
                     if (products.size() == 0) {
-                        Toast.makeText(getContext(), "There is no products like this!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "没有找到相关商品!", Toast.LENGTH_SHORT).show();
                     }
                     recyclerViewSearchedProduct.setAdapter(new ProductGridLayoutItemAdapter(getContext(), products));
                     GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);

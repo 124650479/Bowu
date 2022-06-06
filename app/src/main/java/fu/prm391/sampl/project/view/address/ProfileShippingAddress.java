@@ -72,7 +72,7 @@ public class ProfileShippingAddress extends AppCompatActivity {
 
     private void loadListToRecycleView() {
         progressBarSpa.setVisibility(View.VISIBLE);
-        Call<GetAllAddressResponse> call = ApiClient.getAddressService().getAllAddress("Bearer " + token);
+        Call<GetAllAddressResponse> call = ApiClient.getAddressService().getAllAddress(token);
         call.enqueue(new Callback<GetAllAddressResponse>() {
             @Override
             public void onResponse(Call<GetAllAddressResponse> call, Response<GetAllAddressResponse> response) {
@@ -89,7 +89,6 @@ public class ProfileShippingAddress extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<GetAllAddressResponse> call, Throwable t) {
-                Log.e("GetAllAddressResponse: ", "Failed");
             }
         });
     }

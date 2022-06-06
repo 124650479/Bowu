@@ -56,13 +56,13 @@ public class Register extends AppCompatActivity {
                 if (TextUtils.isEmpty(email.getText().toString().trim())
                         || TextUtils.isEmpty(password.getText().toString().trim())
                         || TextUtils.isEmpty(rePassword.getText().toString().trim())) {
-                    Toast.makeText(Register.this, "All fields are required!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Register.this, "请填写完整的信息", Toast.LENGTH_SHORT).show();
                     btnRegister.setEnabled(true);
                 } else if (!StringHelpers.isValidEmail(email.getText().toString().trim())) {
-                    Toast.makeText(Register.this, "Your email is invalid!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Register.this, "邮箱不合法", Toast.LENGTH_SHORT).show();
                     btnRegister.setEnabled(true);
                 } else if (!password.getText().toString().equals(rePassword.getText().toString())) {
-                    Toast.makeText(Register.this, "Password & Re-Password must be the same!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Register.this, "两次输入密码不一致", Toast.LENGTH_SHORT).show();
                     btnRegister.setEnabled(true);
                 } else {
                     // proceed register

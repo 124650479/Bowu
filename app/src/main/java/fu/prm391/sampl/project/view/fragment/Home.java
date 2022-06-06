@@ -37,7 +37,6 @@ import fu.prm391.sampl.project.model.user.login.LoginResponse;
 import fu.prm391.sampl.project.remote.ApiClient;
 
 import fu.prm391.sampl.project.view.category.AllCategory;
-import fu.prm391.sampl.project.view.product.TopDiscountProduct;
 import fu.prm391.sampl.project.view.product.TrendingProduct;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -221,15 +220,6 @@ public class Home extends Fragment {
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), TrendingProduct.class);
                 startActivity(intent);
-                getActivity().finish();
-            }
-        });
-        // Top discount
-        imageTopDiscount = view.findViewById(R.id.imageSuperSale);
-        imageTopDiscount.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getContext(), TopDiscountProduct.class));
                 getActivity().finish();
             }
         });

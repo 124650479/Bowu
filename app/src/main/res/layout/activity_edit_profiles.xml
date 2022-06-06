@@ -60,13 +60,13 @@
         app:layout_constraintTop_toBottomOf="@+id/coverImg" />
 
     <TextView
-        android:id="@+id/labelFirstName"
+        android:id="@+id/labelUsername"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="17dp"
         android:fontFamily="@font/poppins_semibold"
-        android:text="@string/LabelFirstName"
+        android:text="@string/LabelUserName"
         android:textColor="#000000"
         android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -123,61 +123,32 @@
         app:cardCornerRadius="15dp"
         app:cardElevation="15dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.578"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/labelFirstName">
+        app:layout_constraintTop_toBottomOf="@+id/labelUsername">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <View
-                android:id="@+id/view2"
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="20dp"
-                android:background="#C6C5C5"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/txtLastName"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
-
             <EditText
-                android:id="@+id/txtLastName"
-                android:layout_width="177dp"
-                android:layout_height="match_parent"
-                android:background="@null"
-                android:ems="10"
-                android:fontFamily="@font/poppins_semibold"
-                android:hint="@string/lastNameLabel"
-                android:importantForAutofill="no"
-                android:inputType="textPersonName"
-                android:text="@string/lastNameLabel"
-                android:textSize="15sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/txtFirstName"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="MissingConstraints" />
-
-            <EditText
-                android:id="@+id/txtFirstName"
-                android:layout_width="177dp"
+                android:id="@+id/txtUsername"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginStart="15dp"
                 android:background="@null"
                 android:ems="10"
                 android:fontFamily="@font/poppins_semibold"
-                android:hint="@string/firstNameLabel"
+                android:hint="@string/userNameLabel"
                 android:importantForAutofill="no"
                 android:inputType="textPersonName"
-                android:text="@string/firstNameLabel"
+                android:text="@string/userNameLabel"
                 android:textColor="#000000"
                 android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -248,7 +219,8 @@
                 android:layout_height="match_parent"
                 android:layout_marginStart="15dp"
                 android:fontFamily="@font/poppins_semibold"
-                android:hint="@string/firstNameLabel"
+                android:hint="@string/genderLabel"
+                android:overlapAnchor="false"
                 android:importantForAutofill="no"
                 android:popupBackground="@color/mainBackGroundColor"
                 android:spinnerMode="dropdown"
@@ -296,18 +268,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView10" />
 
-    <TextView
-        android:id="@+id/labelLastNameEdit"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="17dp"
-        android:fontFamily="@font/poppins_semibold"
-        android:text="@string/LabelLastNameEdit"
-        android:textColor="#000000"
-        android:textSize="15sp"
-        app:layout_constraintStart_toEndOf="@+id/labelFirstName"
-        app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
     <TextView
         android:id="@+id/labelEmailAddresss"
@@ -339,7 +299,7 @@
         android:id="@+id/labelPhoneEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
+        android:layout_marginStart="140dp"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/poppins_semibold"
         android:text="@string/labelPhoneEdit"

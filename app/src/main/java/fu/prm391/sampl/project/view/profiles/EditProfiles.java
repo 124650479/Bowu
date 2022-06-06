@@ -54,7 +54,7 @@ import retrofit2.Response;
 public class EditProfiles extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private ImageView btnBack, cover;
-    private EditText firstName, lastName, phoneNumber;
+    private EditText username, lastName, phoneNumber;
     private Spinner gender;
     private FloatingActionButton fab;
     private Button btnSave;
@@ -72,8 +72,7 @@ public class EditProfiles extends AppCompatActivity implements AdapterView.OnIte
         cover = findViewById(R.id.coverImg);
         fab = findViewById(R.id.floatingActionButton);
         btnBack = findViewById(R.id.imageViewBackEditProfile);
-        firstName = findViewById(R.id.txtFirstName);
-        lastName = findViewById(R.id.txtLastName);
+        username = findViewById(R.id.txtUsername);
         emailAddress = findViewById(R.id.textViewtEmailAddressEditProfile);
         phoneNumber = findViewById(R.id.textPhoneEditProfile);
         btnSave = findViewById(R.id.btnSaveEditProfiles);
@@ -140,7 +139,7 @@ public class EditProfiles extends AppCompatActivity implements AdapterView.OnIte
                 btnSave.setEnabled(false);
                 // check format edit text fill
                 if (TextUtils.isEmpty(emailAddress.getText().toString().trim())
-                        || TextUtils.isEmpty(firstName.getText().toString().trim())
+                        || TextUtils.isEmpty(username.getText().toString().trim())
                         || TextUtils.isEmpty(lastName.getText().toString().trim()) || TextUtils.isEmpty(phoneNumber.getText().toString().trim())) {
                     Toast.makeText(EditProfiles.this, "All fields are required!", Toast.LENGTH_SHORT).show();
                     btnSave.setEnabled(true);
@@ -168,8 +167,7 @@ public class EditProfiles extends AppCompatActivity implements AdapterView.OnIte
         Intent intent = getIntent();
         User user = (User) intent.getSerializableExtra("userInfo");
         emailAddress.setText(user.getEmail());
-        firstName.setText(user.getFirstName());
-        lastName.setText(user.getLastName());
+        username.setText(user.getUsername());
         phoneNumber.setText(user.getPhone());
         Picasso.get().load(user.getAvatar()).fit().into(cover);
         // check and set gender
@@ -183,7 +181,7 @@ public class EditProfiles extends AppCompatActivity implements AdapterView.OnIte
     private void updateProfileAction() {
         String token = PreferencesHelpers.loadStringData(EditProfiles.this, "token");
         UpdateUserInfoRequest updateUserInfoRequest = new UpdateUserInfoRequest();
-        updateUserInfoRequest.setFirstName(firstName.getText().toString().trim());
+        updateUserInfoRequest.setFirstName(username.getText().toString().trim());
         updateUserInfoRequest.setLastName(lastName.getText().toString().trim());
         updateUserInfoRequest.setGender(gender.getSelectedItemPosition() + 1);
         updateUserInfoRequest.setPhone(phoneNumber.getText().toString().trim());

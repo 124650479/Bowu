@@ -64,6 +64,7 @@
             app:layout_constraintTop_toBottomOf="@+id/cardView11">
 
         <EditText
+                android:saveEnabled="false"
                 android:id="@+id/txtProductSearchQuery"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

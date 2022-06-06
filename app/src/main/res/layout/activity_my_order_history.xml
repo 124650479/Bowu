@@ -80,7 +80,7 @@
             android:foregroundGravity="center"
             app:drawableGravity="top"
             app:selectedTextColor="@color/white"
-            app:text="Confirmed"
+            app:text="已经签收"
             app:textColor="@color/black"
             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
@@ -95,7 +95,7 @@
             android:padding="10dp"
             app:drawableGravity="top"
             app:selectedTextColor="@color/white"
-            app:text="Delivering"
+            app:text="等待支付"
             app:textColor="@color/black"
             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
             tools:layout_editor_absoluteX="134dp" />
@@ -110,7 +110,7 @@
             android:foregroundGravity="center"
             app:drawableGravity="top"
             app:selectedTextColor="@color/white"
-            app:text="Delivered"
+            app:text="等待签收"
             app:textColor="@color/black"
             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
             tools:layout_editor_absoluteX="268dp" />

@@ -15,7 +15,7 @@
     <string name="txtResetPasswordLabel">重置密码</string>
     <string name="txtPasswordStarLabel">密码*</string>
     <string name="txtEmailAddressStarLabel">邮箱地址*</string>
-    <string name="txtRePasswordStarLabel">重写密码*</string>
+    <string name="txtRePasswordStarLabel">确认密码*</string>
     <string name="txtForgotPasswordLabel">忘记密码</string>
 
     <string name="intro1ScreenText">Jumbo Brand</string>
@@ -34,30 +34,30 @@
     <string name="please_enter">Please Enter digit code that you received on your Email Address.</string>
     <string name="checkYourEmailVerifyCodeResetPassWordLabel">Check Your Email For Verify Code</string>
     <string name="createAccountLabel">创建账户</string>
-    <string name="haveAnAccountLabel">已有账户?</string>
-    <string name="enterYourDetailsInformationLabel">Enter your Details Informations</string>
+    <string name="haveAnAccountLabel">已有账户</string>
+    <string name="enterYourDetailsInformationLabel">输入邮箱以及密码注册</string>
     <string name="letsSignYouInLoginLabel">登录</string>
     <string name="toContinueFirstVerifyThatItYouLoginLabel">继续使用请登陆您的账户</string>
     <string name="dontHaveAnAccountLabel">还没有账户？</string>
-    <string name="setYourPasswordLabel">Set your Password?</string>
-    <string name="rememberedYourPasswordLabel">Remembered Your Password?</string>
-    <string name="pleaseEnterEmailAddressLabel">Please Enter your Email Address. Your will Receive a Code to Create a new Password via email.</string>
+    <string name="setYourPasswordLabel">忘记了密码?</string>
+    <string name="rememberedYourPasswordLabel">想起来了</string>
+    <string name="pleaseEnterEmailAddressLabel">输入邮箱地址以便我们帮助您重置密码</string>
     <string name="txtNewPassStarLabel">New Password*</string>
 
-    <string name="LabelProfiles">Profile</string>
-    <string name="LabelMyOrdersHistory">My Orders History</string>
+    <string name="LabelProfiles">我的</string>
+    <string name="LabelMyOrdersHistory">历史订单</string>
     <string name="DesImage">TODO</string>
-    <string name="LabelMyFavorites">My Favorites</string>
-    <string name="LabelShippingAddress">Shipping Address</string>
+    <string name="LabelMyFavorites">收藏</string>
+    <string name="LabelShippingAddress">收货地址</string>
     <string name="Labelgiftcardsvouchers"><![CDATA[Gift Cards & Vouchers]]></string>
-    <string name="LabelLogout">Logout</string>
+    <string name="LabelLogout">注销</string>
     <string name="LabelUsername">User Name</string>
     <string name="LabelEmail">userEmail@gmail.com</string>
-    <string name="btnEditlLabel">Edit</string>
+    <string name="btnEditlLabel">编辑</string>
     <string name="LabelVerifyNow">Verify Now</string>
     <string name="LabelVeriedUser">Verified</string>
 
-    <string name="discoverLabel">发现</string>
+    <string name="discoverLabel">主页</string>
     <string name="homeLabel">主页</string>
     <string name="cartLabel">购物车</string>
     <string name="accountLabel">我的</string>
@@ -76,7 +76,7 @@
     <string name="title_activity_scrolling">ScrollingActivity</string>
     <string name="action_settings">Settings</string>
     <string name="contentDesImageButtonBack">Back button</string>
-    <string name="categoryLabel">Category</string>
+    <string name="categoryLabel">分类</string>
     <string name="contentDesImageButtonNext">Next</string>
     <string name="superSaleLabel">折扣</string>
     <string name="number_of_item_category">件商品</string>
@@ -86,10 +86,10 @@
     <string name="product_items_cn">件</string>
 
     <!--  Profile Shipping Address  -->
-    <string name="PSA__title">Shipping Address</string>
+    <string name="PSA__title">收货地址</string>
     <string name="PSA__second_title">Address</string>
     <string name="PSA__btn_create_new_address">新地址</string>
-    <string name="PSA__edit">Edit</string>
+    <string name="PSA__edit">编辑</string>
 
     <!--  Create New Address  -->
     <string name="CNA__txtTitle">新地址</string>
@@ -141,17 +141,16 @@
     <string name="add_to_cart_button_label">加入购物车</string>
     <string name="similar_products">相似产品</string>
     <string name="oneLabel">1</string>
-    <string name="editProfilesLabel">Edit Profile</string>
-    <string name="UserInformationLabel">User Information</string>
-    <string name="firstNameLabel">First Name</string>
-    <string name="lastNameLabel">Last Name</string>
-    <string name="emailAddressLabel">Email Address</string>
+    <string name="editProfilesLabel">编辑个人信息</string>
+    <string name="UserInformationLabel">用户信息</string>
+    <string name="userNameLabel">用户名</string>
+    <string name="emailAddressLabel">邮箱地址</string>
     <string-array name="Gender">
         <item>男</item>
         <item>女</item>
     </string-array>
-    <string name="phoneLabel">Phone</string>
-    <string name="btnSave">Save</string>
+    <string name="phoneLabel">电话号码</string>
+    <string name="btnSave">保存</string>
     <string name="genderLabel">Gender</string>
     <string name="active_your_account_label">Active Your Account</string>
     <string name="send_again_label"><u>Send again</u></string>
@@ -162,34 +161,25 @@
     <string name="order_confirmed">Order confirmed</string>
     <string name="delivery_is_in_progress">Delivery is in progress</string>
     <string name="successfully_delivered">Successfully delivered</string>
-    <string name="quantity_order_history">Quantity:</string>
-    <string name="no_order_message">There are no orders here!</string>
-    <string name="contact_us">Contact Us</string>
+    <string name="quantity_order_history">数量:</string>
+    <string name="no_order_message">没有订单！</string>
     <string name="jumbo_clothes">Jumbo Clothes</string>
     <string name="email_contact_us">Email:</string>
-    <string name="nguyen_email">NguyenHTHE141002@fpt.edu.vn</string>
-    <string name="tung_email">TungNMHE140062@fpt.edu.vn</string>
-    <string name="bac_email">BacLNHE141006@fpt.edu.vn</string>
-    <string name="duong_email">DuongNTHE140073@fpt.edu.vn</string>
-    <string name="facebook_label">Facebook:</string>
-    <string name="tung_facebook"><u>https://www.facebook.com/NMTung.Socialnetwork</u></string>
-    <string name="nguyen_facebook"><u>https://www.facebook.com/mrlimfo</u></string>
-    <string name="duong_Facebook"><u>https://www.facebook.com/ngthuyduong.mon2000</u></string>
-    <string name="bac_facebook"><u>https://www.facebook.com/ABboyPD</u></string>
     <string name="textview">TextView</string>
     <string name="number_0">0</string>
     <string name="thanks_for_your_supports_3"><![CDATA[Thanks for your supports! <3]]></string>
-    <string name="LabelFirstName">First Name*</string>
-    <string name="LabelLastNameEdit">Last Name*</string>
-    <string name="labelEmailAddress">Email Address* (Default)</string>
-    <string name="labelGenderSelected">Choose Gender*</string>
-    <string name="labelPhoneEdit">Phone Number*</string>
-    <string name="change_password">Change Password</string>
-    <string name="change_your_password">Change Your Password</string>
-    <string name="enter_your_old_password_and_set_your_new_password_here">Enter Your Old Password And Set Your New Password Here!</string>
-    <string name="re_password_Star">Re-Password*</string>
-    <string name="new_password_star">New Password*</string>
-    <string name="re_new_password_star">Old Password*</string>
+    <string name="LabelUserName">用户名*</string>
+    <string name="labelEmailAddress">邮箱地址* (登录名)</string>
+    <string name="labelGenderSelected">性别*</string>
+    <string name="labelPhoneEdit">电话号码*</string>
+    <string name="change_password">修改密码</string>
+    <string name="change_your_password">修改密码</string>
+    <string name="re_password_Star">确认密码*</string>
+    <string name="new_password_star">新的密码*</string>
+    <string name="re_new_password_star">旧的密码*</string>
+    <string name="enter_your_old_password_and_set_your_new_password_here">
+        在此处输入你旧的密码以及新的密码
+    </string>
 
     <!--单次获取商品条数-->
     <string name="ones_num_product">5</string>

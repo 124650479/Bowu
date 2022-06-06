@@ -28,9 +28,6 @@
             android:name=".view.checkout.CheckOutSuccess"
             android:exported="false" />
         <activity
-            android:name=".view.profiles.ActiveAccount"
-            android:exported="false" />
-        <activity
             android:name=".view.favorite_product.MyFavoriteProduct"
             android:exported="false" />
         <activity
@@ -55,16 +52,7 @@
             android:name=".view.product.TrendingProduct"
             android:exported="false" />
         <activity
-            android:name=".view.product.NewArrivalProduct"
-            android:exported="false" />
-        <activity
-            android:name=".view.product.TopDiscountProduct"
-            android:exported="false" />
-        <activity
             android:name=".view.category.AllCategory"
-            android:exported="false" />
-        <activity
-            android:name=".view.account.ResetPassword"
             android:exported="false" />
         <activity
             android:name=".view.address.ProfileShippingAddress"
@@ -77,9 +65,6 @@
             android:exported="false" />
         <activity
             android:name=".view.intro.Intro1"
-            android:exported="false" />
-        <activity
-            android:name=".view.account.ForgotPassword"
             android:exported="false" />
         <activity
             android:name=".view.account.Register"

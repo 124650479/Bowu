@@ -34,7 +34,7 @@ public interface UserService {
     Call<LoginResponse> check_token(@Header("token") String token,
                                     @Query("jwt")String jwt);
 
-    @POST("user/sign-up")
+    @POST("/register")
     Call<RegisterResponse> registerUser(@Body RegisterRequest registerRequest);
 
     @POST("user/send-email-forgot-password")
@@ -43,7 +43,7 @@ public interface UserService {
     @PATCH("user/reset-password")
     Call<ResetPassResponse> resetPass(@Body ResetPassRequest resetPassRequest);
 
-    @GET("user/get-user-info")
+    @GET("user/get_user")
     Call<UserResponse> getUserInformation(@Header("token") String token);
 
     @PUT("user/update-information")
@@ -58,7 +58,8 @@ public interface UserService {
     Call<ActiveAccountResponse> activeAccount(@Header("Authorization") String token,
                                               @Body ActiveAccountRequest activeAccountRequest);
 
-    @PATCH("user/change-password")
-    Call<ChangePasswordResponse> changePassword(@Header("Authorization") String token,
-                                               @Body ChangePasswordRequest changePasswordRequest);
+    @POST("user/change_password")
+    Call<ChangePasswordResponse> changePassword(@Header("token") String token,
+                                                @Query("newpwd") String pwdn,
+                                                @Query("oldpwd") String pwdo);
 }

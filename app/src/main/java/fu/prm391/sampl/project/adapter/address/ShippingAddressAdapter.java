@@ -57,6 +57,7 @@ public class ShippingAddressAdapter extends RecyclerView.Adapter<ShippingAddress
     @Override
     public void onBindViewHolder(@NonNull ShippingAddressViewHolder holder, int position) {
         Address address = list.get(position);
+
         String detailAddress = address.getDetail()
                 + ", "  + address.getWardName()
                 + ", "  + address.getDistrictName()
@@ -82,17 +83,15 @@ public class ShippingAddressAdapter extends RecyclerView.Adapter<ShippingAddress
                 if (positionCheck != temp) {
                     lastRdb.setChecked(false);
                     holder.getRdbPsaDefault().setChecked(true);
-
-                    Call<UpdateDefaultAddressResponse> call = ApiClient.getAddressService().updateDefaultAddress("Bearer " + token, new UpdateDefaultAddressRequest(address.getId()));
+                    address.setIsDefault(1);
+                    Call<UpdateDefaultAddressResponse> call = ApiClient.getAddressService().updateDefaultAddress(token, address);
                     call.enqueue(new Callback<UpdateDefaultAddressResponse>() {
                         @Override
                         public void onResponse(Call<UpdateDefaultAddressResponse> call, Response<UpdateDefaultAddressResponse> response) {
-                            Log.i("TAG", "onResponse: UpdateDefaultAddressResponse");
                         }
 
                         @Override
                         public void onFailure(Call<UpdateDefaultAddressResponse> call, Throwable t) {
-                            Log.e("TAG", "onFailure: UpdateDefaultAddressResponse");
                         }
                     });
 
@@ -109,30 +108,10 @@ public class ShippingAddressAdapter extends RecyclerView.Adapter<ShippingAddress
             @Override
             public void onClick(View view) {
                 holder.getBtnEdit().setEnabled(false);
-                Call<GetInformationAddressResponse> call = ApiClient.getAddressService().getInformationAddress("Bearer " + token, address.getId());
-                call.enqueue(new Callback<GetInformationAddressResponse>() {
-                    @Override
-                    public void onResponse(Call<GetInformationAddressResponse> call, Response<GetInformationAddressResponse> response) {
-                        if (response.isSuccessful()) {
-                            Intent intent = new Intent(context, CreateNewAddress.class);
-
-                            intent.putExtra("id", response.body().getList().getId());
-                            intent.putExtra("fullName", response.body().getList().getFullName());
-                            intent.putExtra("phone", response.body().getList().getPhone());
-                            intent.putExtra("detail", response.body().getList().getDetail());
-
-                            intent.putExtra("updateAddress", true);
-
-                            context.startActivity(intent);
-                        } else {
-
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<GetInformationAddressResponse> call, Throwable t) {
-                    }
-                });
+                Intent intent = new Intent(context, CreateNewAddress.class);
+                intent.putExtra("address",address);
+                intent.putExtra("updateAddress", true);
+                context.startActivity(intent);
             }
         });
     }

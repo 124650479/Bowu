@@ -112,15 +112,6 @@ public class Login extends AppCompatActivity {
                 finish();
             }
         });
-        // ForgotPassword
-        txtForgotPassword = findViewById(R.id.txtForgotPassLogin);
-        txtForgotPassword.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(Login.this, ForgotPassword.class));
-                finish();
-            }
-        });
         // MainActivity
         txtSkip = findViewById(R.id.txtSkipLogin);
         txtSkip.setOnClickListener(new View.OnClickListener() {

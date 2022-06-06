@@ -1,5 +1,6 @@
 package fu.prm391.sampl.project.remote.service;
 
+import fu.prm391.sampl.project.model.address.Address;
 import fu.prm391.sampl.project.model.address.create_new_address.CreateNewAddressRequest;
 import fu.prm391.sampl.project.model.address.create_new_address.CreateNewAddressResponse;
 import fu.prm391.sampl.project.model.address.delete_address.DeleteAddressRequest;
@@ -28,8 +29,9 @@ public interface AddressService {
     @GET("order/get_address")
     Call<GetAllAddressResponse> getAllAddress(@Header("token") String token);
 
-    @PATCH("address/update-default")
-    Call<UpdateDefaultAddressResponse> updateDefaultAddress(@Header("Authorization") String token, @Body UpdateDefaultAddressRequest request);
+    @POST("address/user/update_default")
+    Call<UpdateDefaultAddressResponse> updateDefaultAddress(@Header("token") String token,
+                                                            @Body Address address);
 
     @GET("address/get_provinces")
     Call<GetProvinceResponse> getProvinceAddress();
@@ -48,9 +50,8 @@ public interface AddressService {
     @HTTP(method = "DELETE", path = "address/delete", hasBody = true)
     Call<DeleteAddressResponse> deleteAddress(@Header("Authorization") String token, @Body DeleteAddressRequest deleteAddressRequest);
 
-    @GET("address/get")
-    Call<GetInformationAddressResponse> getInformationAddress(@Header("Authorization") String token, @Query("id") int id);
 
-    @PUT("address/update")
-    Call<UpdateAddressResponse> updateAddress(@Header("Authorization") String token, @Body UpdateAddressRequest updateAddressRequest);
+    @POST("address/user/update_information")
+    Call<UpdateAddressResponse> updateAddress(@Header("token") String token,
+                                              @Body Address address);
 }

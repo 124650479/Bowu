@@ -33,14 +33,14 @@ public interface ProductService {
     Call<ProductListResponse> getProductByCategoryId(@Query("categoryId") int categoryId);
 
     @GET("product/search")
-    Call<ProductListResponse> searchProducts(@Query("query") String query,
+    Call<ProductListResponse> searchProducts(@Header("token") String token,
+                                             @Query("query") String query,
                                              @Query("limit") int limit);
-
     @GET("/allow/get_product_by_id")
     Call<ProductResponse> getProductById(@Query("id") int id);
 
-    @GET("favorites")
-    Call<ProductListResponse> getFavoriteProducts(@Header("Authorization") String token);
+    @GET("/product/favorites/get")
+    Call<ProductListResponse> getFavoriteProducts(@Header("token") String token);
 
     @POST("/product/favorite/add")
     Call<AddFavoriteResponse> addFavoriteProduct(@Header("token") String token,

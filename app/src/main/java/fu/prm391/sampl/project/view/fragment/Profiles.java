@@ -28,55 +28,34 @@ import fu.prm391.sampl.project.remote.ApiClient;
 import fu.prm391.sampl.project.view.account.ChangePassword;
 import fu.prm391.sampl.project.view.account.Login;
 import fu.prm391.sampl.project.view.address.ProfileShippingAddress;
-import fu.prm391.sampl.project.view.contact_us.ContactUs;
 import fu.prm391.sampl.project.view.favorite_product.MyFavoriteProduct;
 import fu.prm391.sampl.project.view.order.MyOrderHistory;
-import fu.prm391.sampl.project.view.profiles.ActiveAccount;
 import fu.prm391.sampl.project.view.profiles.EditProfiles;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link Profiles#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class Profiles extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
     private View viewLogOut, viewMyHistoryOrders, viewShippingAddress;
     private View viewMyFavorites;
-    private Button btnVerifyProfiles, btnEditProfiles;
+    private Button btnEditProfiles;
     private TextView labelVerified, profilesName, emailProfiles;
     private ImageView verifyImage, imageProfiles;
     private String token = "";
     private User user;
-    private View viewContactUs;
     private CardView loadingCard;
     private View viewChangePassword;
 
     public Profiles() {
-        // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Account.
-     */
-    // TODO: Rename and change types and number of parameters
     public static Profiles newInstance(String param1, String param2) {
         Profiles fragment = new Profiles();
         Bundle args = new Bundle();
@@ -104,7 +83,6 @@ public class Profiles extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_profiles, container, false);
     }
 
@@ -114,14 +92,11 @@ public class Profiles extends Fragment {
         token = PreferencesHelpers.loadStringData(getContext(), "token");
 
         //检查登陆状态
-        //checkLoginUser();
+        checkLoginUser();
 
-        labelVerified = view.findViewById(R.id.labelVerifiedProfile);
-        verifyImage = view.findViewById(R.id.imageVerifiedProfile);
         emailProfiles = view.findViewById(R.id.txtEmailProfiles);
         profilesName = view.findViewById(R.id.txtNameProfiles);
         imageProfiles = view.findViewById(R.id.imageProfiles);
-        btnVerifyProfiles = view.findViewById(R.id.btnVerifyProfiles);
         btnEditProfiles = view.findViewById(R.id.btnEditProfiles);
         viewShippingAddress = view.findViewById(R.id.viewShippingAddressProfiles);
         viewLogOut = view.findViewById(R.id.viewLogoutProfile);
@@ -129,7 +104,7 @@ public class Profiles extends Fragment {
         loadingCard = view.findViewById(R.id.loadingCardProfile);
         loadingCard.setVisibility(View.VISIBLE);
 
-//        callAPIProfiles();
+        callAPIProfiles();
         editProfileAction();
         moveToOtherActivities(view);
         logoutAction(view);
@@ -150,23 +125,21 @@ public class Profiles extends Fragment {
             @Override
             public void onClick(View view) {
                 MaterialAlertDialogBuilder materialAlert = new MaterialAlertDialogBuilder(getContext(), R.style.ThemeOverlay_App_MaterialAlertDialog);
-                materialAlert.setTitle("ALERT");
-                materialAlert.setMessage("Are you Sure want to Logout");
-                materialAlert.setPositiveButton("Logout", new DialogInterface.OnClickListener() {
+                materialAlert.setTitle("退出账户");
+                materialAlert.setMessage("确定要退出您的账号");
+                materialAlert.setPositiveButton("确定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         // move to home navigation
                         BottomNavigationView bottomNavigationView;
                         bottomNavigationView = getActivity().findViewById(R.id.bottomNavigationView);
                         bottomNavigationView.setSelectedItemId(R.id.home2);
-                        // delete token
                         PreferencesHelpers.removeSinglePreference(getContext(), "token");
                     }
                 });
-                materialAlert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                materialAlert.setNegativeButton("取消", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-
                     }
                 });
                 materialAlert.show();
@@ -175,16 +148,12 @@ public class Profiles extends Fragment {
     }
 
     private void callAPIProfiles() {
-        loadingCard.setVisibility(View.VISIBLE);
-
-        loadingCard.setVisibility(View.GONE);
         //加载个人信息
-/*        Call<UserResponse> userResponseCall = ApiClient.getUserService().getUserInformation("Bearer " + token);
+        Call<UserResponse> userResponseCall = ApiClient.getUserService().getUserInformation(token);
         userResponseCall.enqueue(new Callback<UserResponse>() {
             @Override
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                 if (response.isSuccessful()) {
-                    // set visible when api call successful
                     loadingCard.setVisibility(View.GONE);
                     user = response.body().getData();
                     loadUserInfoToScreen();
@@ -194,42 +163,25 @@ public class Profiles extends Fragment {
             @Override
             public void onFailure(Call<UserResponse> call, Throwable t) {
             }
-        });*/
+        });
     }
 
     private void loadUserInfoToScreen() {
-        // check username
-        if (user.getFirstName() == null && user.getLastName() == null) {
-            profilesName.setText("Unknown");
-        } else if (user.getFirstName() == null && user.getLastName() != null) {
-            profilesName.setText(user.getLastName());
-        } else if (user.getFirstName() != null && user.getLastName() == null) {
-            profilesName.setText(user.getFirstName());
+        if (user.getUsername() == null) {
+            profilesName.setText("用户");
         } else {
-            profilesName.setText(user.getFirstName() + " " + user.getLastName());
+            profilesName.setText(user.getUsername());
         }
-        // set default image
         if (user.getAvatar() != null) {
             Picasso.get().load(user.getAvatar()).fit().into(imageProfiles);
         } else {
             imageProfiles.setImageResource(R.drawable.icon_person);
         }
-        // set email
         emailProfiles.setText(user.getEmail());
-        // set verified user
-        if (user.isActive()) {
-            btnVerifyProfiles.setVisibility(View.INVISIBLE);
-            verifyImage.setImageResource(R.drawable.verified);
-            labelVerified.setText("Verified");
-        } else {
-            verifyImage.setImageResource(R.drawable.unverified);
-            labelVerified.setText("UnVerified");
-            btnVerifyProfiles.setVisibility(View.VISIBLE);
-        }
     }
 
     private void moveToOtherActivities(View view) {
-        // action change page to shipping Address
+        // 收货地址
         viewShippingAddress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -238,7 +190,7 @@ public class Profiles extends Fragment {
             }
         });
 
-        // MyOrderHistory
+        // 历史订单
         viewMyHistoryOrders = view.findViewById(R.id.viewMyOrdersHistoryProfiles);
         viewMyHistoryOrders.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -247,29 +199,12 @@ public class Profiles extends Fragment {
             }
         });
 
-        // MyFavoriteProduct
+        // 收藏
         viewMyFavorites = view.findViewById(R.id.viewMyFavoritiesProfiles);
         viewMyFavorites.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getContext(), MyFavoriteProduct.class));
-            }
-        });
-
-        viewContactUs = view.findViewById(R.id.viewContactUsProfiles);
-        viewContactUs.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getContext(), ContactUs.class));
-            }
-        });
-
-        // ActiveAccount
-        btnVerifyProfiles.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getContext(), ActiveAccount.class);
-                startActivity(intent);
             }
         });
 

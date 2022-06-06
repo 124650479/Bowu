@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -61,7 +62,7 @@ public class MyOrderHistory extends AppCompatActivity {
 
     private void loadListOrderHistories(int status) {
         loadingConstraintLayout.setVisibility(View.VISIBLE);
-        Call<OrderResponse> orderResponseCall = ApiClient.getOrderService().getOrdersHistoryByStatus("bearer " + token, status);
+        Call<OrderResponse> orderResponseCall = ApiClient.getOrderService().getOrdersHistoryByStatus(token, status);
         orderResponseCall.enqueue(new Callback<OrderResponse>() {
             @Override
             public void onResponse(Call<OrderResponse> call, Response<OrderResponse> response) {

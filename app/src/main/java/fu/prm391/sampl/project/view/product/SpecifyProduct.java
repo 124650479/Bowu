@@ -99,7 +99,6 @@ public class SpecifyProduct extends AppCompatActivity {
         Intent intent = getIntent();
         productId = intent.getIntExtra("productId", 0);
         Call<ProductResponse> productResponseCall;
-        Log.d("TAG",token);
         if (token == null || token.equals("")) {
             productResponseCall = ApiClient.getProductService().getProductById(productId);
         } else {
