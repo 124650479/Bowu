@@ -44,7 +44,6 @@
         android:layout_marginTop="20.5dp"
         android:layout_marginEnd="20dp"
         android:backgroundTint="@color/black"
-        android:contentDescription="@string/contentDesImageButtonSearch"
         android:elevation="10dp"
         android:src="@drawable/icon_search_white"
         app:layout_constraintEnd_toEndOf="parent"

@@ -2,6 +2,7 @@ package fu.prm391.sampl.project.remote.service;
 
 import fu.prm391.sampl.project.model.user.UpdateUserInfoRequest;
 import fu.prm391.sampl.project.model.user.UpdateUserInfoResponse;
+import fu.prm391.sampl.project.model.user.User;
 import fu.prm391.sampl.project.model.user.active_account.ActiveAccountRequest;
 import fu.prm391.sampl.project.model.user.active_account.ActiveAccountResponse;
 import fu.prm391.sampl.project.model.user.change_password.ChangePasswordRequest;
@@ -37,26 +38,13 @@ public interface UserService {
     @POST("/register")
     Call<RegisterResponse> registerUser(@Body RegisterRequest registerRequest);
 
-    @POST("user/send-email-forgot-password")
-    Call<ForgotPassResponse> sendForgotPass(@Body ForgotPassRequest forgotPassRequest);
-
-    @PATCH("user/reset-password")
-    Call<ResetPassResponse> resetPass(@Body ResetPassRequest resetPassRequest);
 
     @GET("user/get_user")
     Call<UserResponse> getUserInformation(@Header("token") String token);
 
-    @PUT("user/update-information")
+    @POST("user/update_user")
     Call<UpdateUserInfoResponse> updateUserInformation(@Header("token") String token,
-                                                       @Body UpdateUserInfoRequest updateUserInfoRequest);
-
-    @POST("user/send-email-active-account")
-    Call<EmailActiveAccountResponse> sendEmailActiveAccount(@Header("Authorization") String token);
-
-
-    @PATCH("user/active")
-    Call<ActiveAccountResponse> activeAccount(@Header("Authorization") String token,
-                                              @Body ActiveAccountRequest activeAccountRequest);
+                                                       @Body User user);
 
     @POST("user/change_password")
     Call<ChangePasswordResponse> changePassword(@Header("token") String token,

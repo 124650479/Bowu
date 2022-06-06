@@ -22,9 +22,6 @@
             android:name=".view.account.ChangePassword"
             android:exported="false" />
         <activity
-            android:name=".view.contact_us.ContactUs"
-            android:exported="false" />
-        <activity
             android:name=".view.checkout.CheckOutSuccess"
             android:exported="false" />
         <activity
@@ -56,15 +53,6 @@
             android:exported="false" />
         <activity
             android:name=".view.address.ProfileShippingAddress"
-            android:exported="false" />
-        <activity
-            android:name=".view.intro.Intro3"
-            android:exported="false" />
-        <activity
-            android:name=".view.intro.Intro2"
-            android:exported="false" />
-        <activity
-            android:name=".view.intro.Intro1"
             android:exported="false" />
         <activity
             android:name=".view.account.Register"

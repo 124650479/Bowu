@@ -38,7 +38,6 @@
                     android:id="@+id/imageItemCartProduct"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:contentDescription="@string/contentDesImage"
                     tools:srcCompat="@tools:sample/avatars" />
             </androidx.cardview.widget.CardView>
 
@@ -84,7 +83,6 @@
                         android:layout_width="32dp"
                         android:layout_height="wrap_content"
                         android:backgroundTint="#FFFFFF"
-                        android:contentDescription="@string/contentDesImage"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -96,7 +94,6 @@
                         android:layout_width="32dp"
                         android:layout_height="wrap_content"
                         android:backgroundTint="#FFFFFF"
-                        android:contentDescription="@string/contentDesImage"
                         android:hapticFeedbackEnabled="false"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"

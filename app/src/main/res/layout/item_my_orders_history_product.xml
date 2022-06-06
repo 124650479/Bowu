@@ -44,7 +44,7 @@
                 android:ellipsize="end"
                 android:fontFamily="@font/poppins_semibold"
                 android:singleLine="true"
-                android:text="@string/product_name_label"
+
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/cardView9"
@@ -65,7 +65,7 @@
                     android:id="@+id/imgProductMyOrdersHistoryItem"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:contentDescription="@string/contentDesImage"
+
                     android:scaleType="fitCenter"
                     app:srcCompat="@drawable/app_icon" />
             </androidx.cardview.widget.CardView>
@@ -78,7 +78,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="20dp"
                 android:fontFamily="@font/poppins_semibold"
-                android:text="@string/product_price_label"
+
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/cardView9"
@@ -111,7 +111,7 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="15dp"
                 android:fontFamily="@font/poppins_semibold"
-                android:text="@string/number_of_quantity"
+
                 android:textColor="@color/black"
                 app:layout_constraintStart_toEndOf="@+id/textView36"
                 app:layout_constraintTop_toBottomOf="@+id/txtProductPriceMyOrderHistoryItem" />

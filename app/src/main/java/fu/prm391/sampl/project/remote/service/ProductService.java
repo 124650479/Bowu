@@ -23,12 +23,6 @@ public interface ProductService {
     Call<ProductListResponse> getAllProduct(@Query("page") int page,
                                             @Query("limit") int limit);
 
-    @GET("product/get-top-discount")
-    Call<ProductListResponse> getTopDiscountProduct();
-
-    @GET("product/get-top-newest")
-    Call<ProductListResponse> getNewArrivalsProduct();
-
     @GET("/allow/get_products_by_caterory")
     Call<ProductListResponse> getProductByCategoryId(@Query("categoryId") int categoryId);
 

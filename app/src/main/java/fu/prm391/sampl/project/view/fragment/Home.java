@@ -60,7 +60,7 @@ public class Home extends Fragment {
 
     private RecyclerView recyclerViewTop4Category, recyclerViewTopTrendingProduct;
     private TextView txtViewAllCategory, txtViewAllTrendingProduct;
-    private ImageView imageCart, imageTopDiscount, imageNewArrival;
+    private ImageView imageCart;
     private ConstraintLayout loadingLayout;
     private Button button;
 
@@ -203,39 +203,29 @@ public class Home extends Fragment {
     }
 
     private void moveToOtherActivities(View view) {
-        // All Category
+        //全部分类
         txtViewAllCategory = view.findViewById(R.id.txtViewAllCategoryHome);
         txtViewAllCategory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), AllCategory.class);
                 startActivity(intent);
-                getActivity().finish();
             }
         });
-        // Trending
+        //全部商品
         txtViewAllTrendingProduct = view.findViewById(R.id.txtViewAllTrendingProductHome);
         txtViewAllTrendingProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), TrendingProduct.class);
                 startActivity(intent);
-                getActivity().finish();
             }
         });
     }
 
     private void moveToOtherNavigationTab(View view) {
-        imageCart = view.findViewById(R.id.imageCartHome);
-        imageCart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                BottomNavigationView bottomNavigationView;
-                bottomNavigationView = getActivity().findViewById(R.id.bottomNavigationView);
-                bottomNavigationView.setSelectedItemId(R.id.cart);
-            }
-        });
 
+        //换一批
         button=view.findViewById(R.id.more_other);
         button.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -47,8 +47,9 @@ public interface AddressService {
     Call<CreateNewAddressResponse> createNewAddress(@Header("token") String token,
                                                     @Body CreateNewAddressRequest createNewAddressRequest);
 
-    @HTTP(method = "DELETE", path = "address/delete", hasBody = true)
-    Call<DeleteAddressResponse> deleteAddress(@Header("Authorization") String token, @Body DeleteAddressRequest deleteAddressRequest);
+    @POST("address/user/del")
+    Call<DeleteAddressResponse> deleteAddress(@Header("token") String token,
+                                              @Body Address address);
 
 
     @POST("address/user/update_information")

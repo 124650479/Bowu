@@ -54,7 +54,7 @@ import retrofit2.Response;
 public class EditProfiles extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private ImageView btnBack, cover;
-    private EditText username, lastName, phoneNumber;
+    private EditText username, phoneNumber;
     private Spinner gender;
     private FloatingActionButton fab;
     private Button btnSave;
@@ -62,6 +62,7 @@ public class EditProfiles extends AppCompatActivity implements AdapterView.OnIte
     private String encodedImage;
     private String stringUri;
     private int storePermissionCode = 1;
+    private User user;
 
     @SuppressLint("WrongThread")
     @Override
@@ -87,8 +88,6 @@ public class EditProfiles extends AppCompatActivity implements AdapterView.OnIte
     // READ_EXTERNAL_STORAGE and upload image from external storage
     private void uploadImageFromPhone() {
         fab.setOnClickListener(new View.OnClickListener() {
-
-
             @Override
             public void onClick(View view) {
                 if (ContextCompat.checkSelfPermission(EditProfiles.this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
@@ -109,16 +108,16 @@ public class EditProfiles extends AppCompatActivity implements AdapterView.OnIte
     private void requestStoragePermission() {
         if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_EXTERNAL_STORAGE)) {
             new AlertDialog.Builder(this)
-                    .setTitle("Permission Needed")
-                    .setMessage("This permission is needed to read your external storage ")
-                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    .setTitle("请求权限")
+                    .setMessage("上传头像需要使用到读取权限")
+                    .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             ActivityCompat.requestPermissions(EditProfiles.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, storePermissionCode);
 
                         }
                     })
-                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    .setNegativeButton("取消", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             dialogInterface.dismiss();
@@ -137,17 +136,10 @@ public class EditProfiles extends AppCompatActivity implements AdapterView.OnIte
             @Override
             public void onClick(View v) {
                 btnSave.setEnabled(false);
-                // check format edit text fill
-                if (TextUtils.isEmpty(emailAddress.getText().toString().trim())
-                        || TextUtils.isEmpty(username.getText().toString().trim())
-                        || TextUtils.isEmpty(lastName.getText().toString().trim()) || TextUtils.isEmpty(phoneNumber.getText().toString().trim())) {
-                    Toast.makeText(EditProfiles.this, "All fields are required!", Toast.LENGTH_SHORT).show();
-                    btnSave.setEnabled(true);
-                } else if (phoneNumber.length() != 10) {
-                    Toast.makeText(EditProfiles.this, "Wrong format phone number", Toast.LENGTH_SHORT).show();
+                if (phoneNumber.length() != 11) {
+                    Toast.makeText(EditProfiles.this, "号码格式错误", Toast.LENGTH_SHORT).show();
                     btnSave.setEnabled(true);
                 } else {
-                    // proceed save
                     updateProfileAction();
                 }
             }
@@ -165,7 +157,7 @@ public class EditProfiles extends AppCompatActivity implements AdapterView.OnIte
     // get info from profile and put
     private void getInfoFromProfiles() {
         Intent intent = getIntent();
-        User user = (User) intent.getSerializableExtra("userInfo");
+        user = (User) intent.getSerializableExtra("userInfo");
         emailAddress.setText(user.getEmail());
         username.setText(user.getUsername());
         phoneNumber.setText(user.getPhone());
@@ -180,27 +172,24 @@ public class EditProfiles extends AppCompatActivity implements AdapterView.OnIte
 
     private void updateProfileAction() {
         String token = PreferencesHelpers.loadStringData(EditProfiles.this, "token");
-        UpdateUserInfoRequest updateUserInfoRequest = new UpdateUserInfoRequest();
-        updateUserInfoRequest.setFirstName(username.getText().toString().trim());
-        updateUserInfoRequest.setLastName(lastName.getText().toString().trim());
-        updateUserInfoRequest.setGender(gender.getSelectedItemPosition() + 1);
-        updateUserInfoRequest.setPhone(phoneNumber.getText().toString().trim());
+        user.setUsername(username.getText().toString().trim());
+        user.setGender(gender.getSelectedItemPosition() + 1);
+        user.setPhone(phoneNumber.getText().toString().trim());
 
         if (encodedImage == null) {
-            updateUserInfoRequest.setImage(stringUri);
+            user.setAvatar(stringUri);
         } else {
-            updateUserInfoRequest.setImage("data:image/jpeg;base64," + encodedImage);
+            user.setAvatar("data:image/jpeg;base64," + encodedImage);
         }
 
         // call Api
-        Call<UpdateUserInfoResponse> updateUserInfoResponseCall = ApiClient.getUserService().updateUserInformation("Bearer " + token, updateUserInfoRequest);
+        Call<UpdateUserInfoResponse> updateUserInfoResponseCall = ApiClient.getUserService().updateUserInformation(token, user);
         updateUserInfoResponseCall.enqueue(new Callback<UpdateUserInfoResponse>() {
             @Override
             public void onResponse(Call<UpdateUserInfoResponse> call, Response<UpdateUserInfoResponse> response) {
                 if (response.isSuccessful()) {
                     UpdateUserInfoResponse updateUserInfoResponse = response.body();
                     Toast.makeText(EditProfiles.this, updateUserInfoResponse.getMessage(), Toast.LENGTH_SHORT).show();
-                    finish();
                 } else {
                     try {
                         JSONObject jsonObject = new JSONObject(response.errorBody().string());

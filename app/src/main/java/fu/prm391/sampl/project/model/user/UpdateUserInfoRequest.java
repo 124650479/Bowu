@@ -4,47 +4,25 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class UpdateUserInfoRequest {
-    @SerializedName("firstName")
+    @SerializedName("username")
     @Expose
-    private String firstName;
-    @SerializedName("lastName")
-    @Expose
-    private String lastName;
+    private String username;
     @SerializedName("gender")
     @Expose
     private int gender;
     @SerializedName("phone")
     @Expose
     private String phone;
-    @SerializedName("image")
+    @SerializedName("avatar")
     @Expose
-    private String image;
+    private String avatar;
 
-    public UpdateUserInfoRequest() {
+    public String getUsername() {
+        return username;
     }
 
-    public UpdateUserInfoRequest(String firstName, String lastName, int gender, String phone, String image) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.gender = gender;
-        this.phone = phone;
-        this.image = image;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public int getGender() {
@@ -63,12 +41,11 @@ public class UpdateUserInfoRequest {
         this.phone = phone;
     }
 
-    public String getImage() {
-        return image;
+    public String getAvatar() {
+        return avatar;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
-
 }

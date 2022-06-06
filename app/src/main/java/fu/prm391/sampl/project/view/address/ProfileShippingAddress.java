@@ -128,25 +128,25 @@ public class ProfileShippingAddress extends AppCompatActivity {
             int position = viewHolder.getBindingAdapterPosition();
             Address address = deleteItem(position);
             if (address.getIsDefault() == 1) {
-                Toast.makeText(ProfileShippingAddress.this, "Cant delete default address", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ProfileShippingAddress.this, "不允许删除默认地址", Toast.LENGTH_SHORT).show();
                 revertItem(position, address);
             } else {
-                Call<DeleteAddressResponse> call = ApiClient.getAddressService().deleteAddress("Bearer " + token, new DeleteAddressRequest(address.getId()));
+                Call<DeleteAddressResponse> call = ApiClient.getAddressService().deleteAddress(token, address);
                 call.enqueue(new Callback<DeleteAddressResponse>() {
                     @Override
                     public void onResponse(Call<DeleteAddressResponse> call, Response<DeleteAddressResponse> response) {
                         if (response.isSuccessful()) {
-                            Toast.makeText(ProfileShippingAddress.this, "Delete successfully", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ProfileShippingAddress.this, "删除成功", Toast.LENGTH_SHORT).show();
                         } else {
                             revertItem(position, address);
-                            Toast.makeText(ProfileShippingAddress.this, "Delete Failed", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ProfileShippingAddress.this, "删除失败", Toast.LENGTH_SHORT).show();
                         }
                     }
 
                     @Override
                     public void onFailure(Call<DeleteAddressResponse> call, Throwable t) {
                         revertItem(position, address);
-                        Toast.makeText(ProfileShippingAddress.this, "Delete Failed", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ProfileShippingAddress.this, "删除失败", Toast.LENGTH_SHORT).show();
                     }
                 });
             }

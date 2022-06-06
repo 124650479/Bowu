@@ -25,7 +25,6 @@
         android:layout_width="167dp"
         android:layout_height="154dp"
         android:layout_marginTop="240dp"
-        android:contentDescription="@string/contentDesImage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

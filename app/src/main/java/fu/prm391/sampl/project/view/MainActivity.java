@@ -13,7 +13,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import fu.prm391.sampl.project.R;
 import fu.prm391.sampl.project.helper.PreferencesHelpers;
-import fu.prm391.sampl.project.view.intro.Intro1;
+import fu.prm391.sampl.project.view.intro.IntroApp;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        firstRunActivity();
+        //firstRunActivity();
 
         //载入底部导航栏
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         Boolean isFirstRun = PreferencesHelpers.getBooleanData(MainActivity.this, "isFirstRun", true);
         if (isFirstRun) {
             //show start activity
-            startActivity(new Intent(MainActivity.this, Intro1.class));
+            startActivity(new Intent(MainActivity.this, IntroApp.class));
         }
         PreferencesHelpers.editBooleanData(MainActivity.this, "isFirstRun", false);
 //        way 2:
